@@ -1,0 +1,82 @@
+// TODO API 接口计划
+
+// 写入、修改操作默认会覆盖、不存在则创建、递归地执行。
+// 通过 opts 选择如何处理符号链接。
+// 自行处理 graceful-fs 问题
+// 返回的路径永远是 Unix 风格
+// 规范化错误。
+
+// 文件 ✅
+// write(path, data);（提供数据则覆盖，提供函数则将旧数据传入并以返回值为写入数据）
+// read(path);
+// -
+// append(path, data);（不允许传入函数，因为这个方法存在是因为降低内存占用）
+// truncate(path, length);
+
+// 目录 ✅
+// makeDir(path);
+// makeParentDir(path);
+// readDir(path);
+
+// 软/硬链接
+// makeLink();
+// makeSymlink();
+// resolveSymlink();
+// -
+// toRealPath();
+
+// 元信息
+// getStats();
+// setStats();
+// -
+// exists();
+// hasAccess();
+// getMode();
+// setMode();
+// getOwner();
+// setOwner();
+// getSize();
+// setTime();
+// getAccessTime();
+// getModifiedTime();
+// getChangeTime();
+// getBirthTime();
+// isFile();
+// isDir();
+// isSymlink();
+// isEmpty();
+
+// 通用
+// remove();
+// copy();
+// rename();
+// move();
+// lock();（光是 flags 在 unix 不能独占文件，需第三方库 flock）
+
+// 遍历与查找
+// glob();
+// walk();（直接返回数组、流）
+
+// 监听变动
+// watch();
+
+// 工具
+// makeTempDir();
+// getSpecialPath();
+// getDrives();
+// getPartitions();
+// getVolumes();
+
+// 句柄操作
+// open();
+// openDir();
+// close();
+// class File（可异步迭代，会自动关闭）
+// class Dir（可异步迭代，会自动关闭）
+
+// 流式接口
+// readStream();
+// writeStream();
+
+// 可以流的方式替换文件内容：https://github.com/signicode/rw-stream/
+// 主要配置类型的扩展接口（类似 https://github.com/unjs/confbox 的另一个包，包括 writeText）

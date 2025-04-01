@@ -1,0 +1,18 @@
+{
+    "extends": "@meojs/cfgs/ts/general.json",
+    "compilerOptions": {
+        "lib": [
+            "ESNext",
+            "DOM"
+        ],
+        "types": [
+            "node",
+            "@meojs/types/cocos-creator/3.8.5/editor",
+            "@meojs/types/cocos-creator/3.8.5/engine",
+            "./constants.d.ts"
+        ],
+    },
+    "include": [
+        "src"
+    ],
+}

@@ -1,0 +1,51 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "../packages/core"
+		},
+		{
+			"path": "../packages/fs"
+		},
+		{
+			"path": "/Users/smallmain/Documents/Work/xenon-studio/xenon.js/src/pal"
+		}
+	],
+	"settings": {
+		"[javascript][typescript][javascriptreact][typescriptreact]": {
+			"editor.formatOnSave": true,
+			"editor.codeActionsOnSave": {
+				"source.fixAll": "explicit",
+				"source.organizeImports": "explicit",
+			},
+			"editor.defaultFormatter": "esbenp.prettier-vscode",
+			"editor.formatOnPaste": true,
+			"editor.formatOnType": true,
+		},
+		"[css][scss][less]": {
+			"editor.defaultFormatter": "esbenp.prettier-vscode",
+		},
+		"[html]": {
+			"editor.defaultFormatter": "esbenp.prettier-vscode",
+		},
+		"[markdown][mdx]": {
+			"editor.formatOnSave": true,
+			"editor.codeActionsOnSave": {
+				"source.fixAll": "explicit",
+				"source.organizeImports": "explicit",
+			},
+			"editor.defaultFormatter": "esbenp.prettier-vscode",
+			"editor.formatOnPaste": true,
+			"editor.formatOnType": true,
+		}
+	},
+	"extensions": {
+		"recommendations": [
+			"editorconfig.editorconfig",
+			"dbaeumer.vscode-eslint",
+			"esbenp.prettier-vscode",
+		]
+	},
+}

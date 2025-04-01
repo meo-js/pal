@@ -1,0 +1,48 @@
+{
+  "name": "@meojs/pal",
+  "version": "1.0.0",
+  "engines": {
+    "node": ">=20"
+  },
+  "description": "A unified platform abstraction layer.",
+  "author": {
+    "name": "SmallMain",
+    "email": "smallmain@outlook.com",
+    "url": "https://www.smallmain.com/"
+  },
+  "homepage": "https://www.smallmain.com/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/meo-js/pal.git",
+    "directory": "packages/core"
+  },
+  "bugs": "https://github.com/meo-js/pal/issues",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "README*.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "npx unbuild",
+    "dev": "npx unbuild --watch",
+    "clean": "rimraf ./dist",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "@meojs/types": "^1.0.1",
+    "@meojs/utils": "^1.0.4",
+    "@types/node": "^20"
+  }
+}
