@@ -15,8 +15,8 @@ importers:
         specifier: ^19.8.0
         version: 19.8.0
       '@meojs/cfgs':
-        specifier: ^2.0.11
-        version: 2.0.11(eslint@9.22.0(jiti@2.4.2))(prettier@3.5.3)(typescript@5.7.3)
+        specifier: ^2.0.12
+        version: 2.0.12(eslint@9.22.0(jiti@2.4.2))(prettier@3.5.3)(typescript@5.7.3)
       cross-env:
         specifier: ^7.0.3
         version: 7.0.3
@@ -233,8 +233,8 @@ packages:
     resolution: {integrity: sha512-O8jcjabXaleOG9DQ0+ARXWZBTfnP4WNAqzuiJK7ll44AmxGKv/J2M4TPjxjY3znBCfvBXFzucm1twdyFybFqEA==}
     engines: {node: '>=12'}
 
-  '@meojs/cfgs@2.0.11':
-    resolution: {integrity: sha512-gWLA+eAsgyxUjatNlvr/fylBsIytkwPqCXVhlgjY4cx8Myj3SwOABXBQ3pWTWiv7wjXJgLeXYj9PI9lE6W410g==}
+  '@meojs/cfgs@2.0.12':
+    resolution: {integrity: sha512-aEp0dz6Nt9UN0c973HcAXFWi/zfQS6gXaNKg8zCilsIUWHsKJCxBOKKJR6MpHHoUN2dLJJ9h6HeZExJaAimneg==}
     engines: {node: '>=20'}
     peerDependencies:
       eslint: ^9.22.0
@@ -1484,7 +1484,7 @@ snapshots:
       wrap-ansi: 8.1.0
       wrap-ansi-cjs: wrap-ansi@7.0.0
 
-  '@meojs/cfgs@2.0.11(eslint@9.22.0(jiti@2.4.2))(prettier@3.5.3)(typescript@5.7.3)':
+  '@meojs/cfgs@2.0.12(eslint@9.22.0(jiti@2.4.2))(prettier@3.5.3)(typescript@5.7.3)':
     dependencies:
       '@eslint-community/eslint-plugin-eslint-comments': 4.4.1(eslint@9.22.0(jiti@2.4.2))
       '@eslint/compat': 1.2.7(eslint@9.22.0(jiti@2.4.2))

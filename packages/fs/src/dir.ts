@@ -10,7 +10,7 @@ import { hasAccess, type Dirent } from "./stat.js";
  */
 export interface MakeDirOptions {
     /**
-     * 权限模式
+     * 权限
      *
      * @default 0o777
      */
@@ -64,7 +64,7 @@ export async function makeParentDir(
     if (isString(path)) {
         await mkdir(dirname(path), opts);
     } else {
-        // 传入二进制路径的话无法处理路径，只能先判断是否有东西存在，没有则创建一个目录然后再删除，这样确保父目录会被创建
+        // 传入二进制路径的话无法分割路径，只能先判断是否有东西存在，没有则创建一个目录然后再删除，这样确保父目录会被创建
         try {
             if (!(await hasAccess(path))) {
                 await mkdir(path, opts);
@@ -94,7 +94,7 @@ export async function readDir(
     opts:
         | (ReadDirOptions & { withDirent?: false; encoding: Encoding.Binary })
         | Encoding.Binary,
-): Promise<Uint8Array[]>;
+): Promise<Uint8String[]>;
 export async function readDir(
     path: string | Uint8String,
     opts?:
@@ -111,7 +111,7 @@ export async function readDir(
               withDirent?: false;
           })
         | Encoding,
-): Promise<string[] | Uint8Array[]>;
+): Promise<string[] | Uint8String[]>;
 export async function readDir(
     path: string | Uint8String,
     opts:
@@ -129,14 +129,14 @@ export async function readDir(
               encoding: Encoding.Binary;
           })
         | Encoding.Binary,
-): Promise<Uint8Array[] | Dirent[]>;
+): Promise<Uint8String[] | Dirent[]>;
 export async function readDir(
     path: string | Uint8String,
     opts?: ReadDirOptions | Encoding,
-): Promise<string[] | Uint8Array[] | Dirent[]>;
+): Promise<string[] | Uint8String[] | Dirent[]>;
 export async function readDir(
     path: string | Uint8String,
     opts?: ReadDirOptions | Encoding,
-): Promise<string[] | Uint8Array[] | Dirent[]> {
+): Promise<string[] | Uint8String[] | Dirent[]> {
     return await readdir(path, opts);
 }

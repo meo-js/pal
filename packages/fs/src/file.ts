@@ -40,7 +40,7 @@ export interface WriteFileOptions {
     encoding?: Exclude<Encoding, Encoding.Binary>;
 
     /**
-     * 权限模式
+     * 权限
      *
      * @default 0o666
      */
@@ -77,7 +77,7 @@ export interface ModifyFileOptions {
     writeEncoding?: Exclude<Encoding, Encoding.Binary>;
 
     /**
-     * 权限模式
+     * 权限
      *
      * @default 0o666
      */

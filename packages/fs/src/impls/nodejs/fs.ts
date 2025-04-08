@@ -2,6 +2,7 @@ import {
     isArray,
     isArrayBuffer,
     isArrayBufferView,
+    isBigInt,
     isNumber,
     isObject,
     isString,
@@ -11,6 +12,8 @@ import {
 import {
     constants,
     Dirent as Dirent_Impl,
+    Stats as Stats_Impl,
+    type BigIntStats as BigIntStats_Impl,
     type MakeDirectoryOptions,
     type Mode as Mode_Impl,
     type PathLike,
@@ -24,7 +27,7 @@ import type {
     WriteFileOptions,
 } from "../../file.js";
 import { Access, e, Encoding, Mode, type Uint8String } from "../../shared.js";
-import { Dirent } from "./stat.js";
+import { BigIntStat, Dirent, Stat } from "./stat.js";
 
 export function impl2Mode(impl: Extract<Mode_Impl, number>): Mode {
     let mode: Mode = 0;
@@ -182,6 +185,14 @@ export function path2impl(path: string | Uint8String): PathLike {
     return isString(path) ? path : uint8Array2Buffer(path);
 }
 
+export function impl2stats(impl: Stats_Impl | BigIntStats_Impl) {
+    if (isBigInt(impl.mode)) {
+        return new BigIntStat(impl as BigIntStats_Impl);
+    } else {
+        return new Stat(impl as Stats_Impl);
+    }
+}
+
 export function mkdirOptions2impl(
     opts?: MakeDirOptions | Mode,
 ): Mode_Impl | MakeDirectoryOptions | null | undefined {
@@ -263,6 +274,14 @@ export function readFileOptions2impl(
         // 传入 Binary 等同于 NodeJS 传入 undefined
         encoding: encoding === "buffer" ? undefined : encoding,
         signal,
+    };
+}
+
+export function statOptions2impl(
+    bigint: boolean,
+): Parameters<typeof fs.stat>[1] {
+    return {
+        bigint,
     };
 }
 
@@ -368,7 +387,7 @@ export const readdir = wrap2(
     readdirOptions2impl,
     impl2Return<
         Awaited<ReturnType<typeof fs.readdir>>,
-        Dirent[] | string[] | Uint8Array[]
+        Dirent[] | string[] | Uint8String[]
     >,
 );
 
@@ -393,5 +412,51 @@ export const rm = wrap2(
     fs.rm,
     path2impl,
     nothing<Parameters<typeof fs.rm>[1]>,
+    nothing,
+);
+
+export const stat = wrap2(fs.stat, path2impl, statOptions2impl, impl2stats);
+
+export const lstat = wrap2(fs.lstat, path2impl, statOptions2impl, impl2stats);
+
+export const chmod = wrap2(fs.chmod, path2impl, mode2Impl, nothing);
+
+export const lchmod = wrap2(
+    // eslint-disable-next-line @typescript-eslint/no-deprecated -- checked.
+    fs.lchmod,
+    path2impl,
+    mode2Impl,
+    nothing,
+);
+
+export const chown = wrap3(
+    fs.chown,
+    path2impl,
+    nothing<Parameters<typeof fs.chown>[1]>,
+    nothing<Parameters<typeof fs.chown>[2]>,
+    nothing,
+);
+
+export const lchown = wrap3(
+    fs.lchown,
+    path2impl,
+    nothing<Parameters<typeof fs.lchown>[1]>,
+    nothing<Parameters<typeof fs.lchown>[2]>,
+    nothing,
+);
+
+export const utimes = wrap3(
+    fs.utimes,
+    path2impl,
+    nothing<Parameters<typeof fs.utimes>[1]>,
+    nothing<Parameters<typeof fs.utimes>[2]>,
+    nothing,
+);
+
+export const lutimes = wrap3(
+    fs.lutimes,
+    path2impl,
+    nothing<Parameters<typeof fs.lutimes>[1]>,
+    nothing<Parameters<typeof fs.lutimes>[2]>,
     nothing,
 );

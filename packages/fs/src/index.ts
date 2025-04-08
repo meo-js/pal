@@ -4,7 +4,9 @@
 // 通过 opts 选择如何处理符号链接。
 // 自行处理 graceful-fs 问题
 // 返回的路径永远是 Unix 风格
-// 规范化错误。
+// 处理嵌套的符号链接（现在已知 read 不支持）
+// 处理 MacOS Alias（https://www.npmjs.com/package/macos-alias）
+// 处理垃圾文件（https://www.npmjs.com/package/junk）
 
 // 文件 ✅
 // write(path, data);（提供数据则覆盖，提供函数则将旧数据传入并以返回值为写入数据）
@@ -25,7 +27,7 @@
 // -
 // toRealPath();
 
-// 元信息
+// 元信息 ✅
 // getStats();
 // setStats();
 // -
@@ -44,7 +46,7 @@
 // isFile();
 // isDir();
 // isSymlink();
-// isEmpty();
+// isEmptyDir();
 
 // 通用
 // remove();
@@ -55,7 +57,7 @@
 
 // 遍历与查找
 // glob();
-// walk();（直接返回数组、流）
+// walk();（直接返回数组、流，正确处理嵌套循环、符号链接不重复遍历）
 
 // 监听变动
 // watch();
