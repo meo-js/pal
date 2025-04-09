@@ -1,6 +1,4 @@
-import { readlinkSync, realpathSync } from "fs";
 import { readDir } from "./dir.js";
-import { read } from "./file.js";
 import { e, Encoding, type Uint8String } from "./shared.js";
 import { getStats, type Dirent } from "./stat.js";
 
@@ -144,8 +142,17 @@ export function walk(
                 handle(ctx);
                 return resolver.promise;
             },
-            cancel(reason) {
+            async cancel(reason) {
                 ctx.state = WalkState.Canceled;
+
+                // 如果还有处理中的项目，则等待处理完毕才算完成取消操作
+                if (ctx.processing > 0) {
+                    if (!ctx.resolver) {
+                        ctx.resolver = Promise.withResolvers();
+                    }
+                }
+
+                return ctx.resolver?.promise;
             },
         },
         new CountQueuingStrategy({ highWaterMark }),
@@ -197,12 +204,31 @@ async function handleDirectory(ctx: WalkContext, item: Dirent) {
         withDirent: true,
     });
 
+    if (asyncCheck(ctx)) {
+        return;
+    }
+
     for (const item of items) {
         ctx.queue.push(item);
     }
 
     ctx.processing--;
     handle(ctx);
+}
+
+/**
+ * 该函数需与 processing 配合使用
+ */
+function asyncCheck(ctx: WalkContext) {
+    if (ctx.state === WalkState.Canceled) {
+        ctx.processing--;
+        if (ctx.processing === 0) {
+            donePull(ctx);
+        }
+        return true;
+    } else {
+        return false;
+    }
 }
 
 function doneProcess(ctx: WalkContext) {
@@ -235,11 +261,27 @@ function pushToResult(
     }
 }
 
-console.log(await readDir("./temp", { withDirent: true }));
-console.log(await readDir("./temp", { withDirent: false }));
-console.log(readlinkSync("./temp/broken_symlink"));
-console.log(readlinkSync("./temp/circle_tempa_symlink"));
-console.log(readlinkSync("./temp/broken_absolute_symlink"));
-console.log(readlinkSync("./temp/tempa-point-point"));
-console.log(realpathSync("./temp/tempa-point-point"));
-console.log(await read("./temp/c-point-point.json", Encoding.Utf8));
+// console.log(await readDir("./temp", { withDirent: true }));
+// console.log(await readDir("./temp", { withDirent: false }));
+// console.log(readlinkSync("./temp/broken_symlink"));
+// console.log(readlinkSync("./temp/circle_tempa_symlink"));
+// console.log(readlinkSync("./temp/broken_absolute_symlink"));
+// console.log(readlinkSync("./temp/tempa-point-point"));
+// console.log(realpathSync("./temp/tempa-point-point"));
+// console.log(await read("./temp/c-point-point.json", Encoding.Utf8));
+
+const reader = walk(".").getReader();
+function read2() {
+    reader
+        .read()
+        .then(res => {
+            console.log(res);
+            if (!res.done) {
+                read2();
+            }
+        })
+        .catch((error: unknown) => {
+            console.error("Error reading directory:", error);
+        });
+}
+read2();
