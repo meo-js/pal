@@ -76,7 +76,7 @@ enum WalkState {
 interface WalkContext {
     controller: ReadableStreamDefaultController<string | Uint8String | Dirent>;
     state: WalkState;
-    queue: Dirent[];
+    queue: WalkItem[];
     processing: number;
     errors: Error[];
     resolver: PromiseWithResolvers<void> | null;
@@ -90,6 +90,11 @@ interface WalkContext {
     filter: never;
     whatSymlink: never;
     abortOnError: boolean;
+}
+
+interface WalkItem {
+    depth: number;
+    dirent: Dirent;
 }
 
 export function walk(
@@ -118,7 +123,9 @@ export function walk(
                     return;
                 }
 
-                const items = await readDir(path, { withDirent: true });
+                const items = (await readDir(path, { withDirent: true })).map(
+                    v => ({ depth: 1, dirent: v }),
+                );
 
                 ctx = {
                     controller,
@@ -180,11 +187,21 @@ function handle(ctx: WalkContext) {
 
         const current = queue.pop()!;
 
+        // 如果当前项深度大于最大深度，则跳过
+        if (current.depth > ctx.depth) {
+            continue;
+        }
+
         pushToResult(ctx, current, withDirent);
 
-        if (current.isDirectory()) {
+        // 如果当前项深度即是最大深度，则无需获取子项
+        if (current.depth === ctx.depth) {
+            continue;
+        }
+
+        if (current.dirent.isDirectory()) {
             void handleDirectory(ctx, current);
-        } else if (current.isSymbolicLink()) {
+        } else if (current.dirent.isSymbolicLink()) {
             // TODO
         }
     }
@@ -197,10 +214,10 @@ function handle(ctx: WalkContext) {
     }
 }
 
-async function handleDirectory(ctx: WalkContext, item: Dirent) {
+async function handleDirectory(ctx: WalkContext, dir: WalkItem) {
     ctx.processing++;
 
-    const items = await readDir(item.path, {
+    const items = await readDir(dir.dirent.path, {
         withDirent: true,
     });
 
@@ -209,7 +226,7 @@ async function handleDirectory(ctx: WalkContext, item: Dirent) {
     }
 
     for (const item of items) {
-        ctx.queue.push(item);
+        ctx.queue.push({ depth: dir.depth + 1, dirent: item });
     }
 
     ctx.processing--;
@@ -251,13 +268,13 @@ function closeStream(ctx: WalkContext) {
 
 function pushToResult(
     { controller }: WalkContext,
-    value: Dirent,
+    item: WalkItem,
     withDirent: boolean,
 ) {
     if (withDirent) {
-        controller.enqueue(value);
+        controller.enqueue(item.dirent);
     } else {
-        controller.enqueue(value.path);
+        controller.enqueue(item.dirent.path);
     }
 }
 
