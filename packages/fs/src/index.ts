@@ -7,6 +7,7 @@
 // 处理嵌套的符号链接（现在已知 read 不支持）
 // 处理 MacOS Alias（https://www.npmjs.com/package/macos-alias）
 // 处理垃圾文件（https://www.npmjs.com/package/junk）
+// 视文件名为未知编码内容，Unix 只支持兼容 ASCII 编码作为文件名，具体来说 0x0 (ASCII Nul) and 0x2f (ASCII '/') 是特殊字符
 
 // 文件 ✅
 // write(path, data);（提供数据则覆盖，提供函数则将旧数据传入并以返回值为写入数据）
