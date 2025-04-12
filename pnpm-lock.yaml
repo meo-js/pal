@@ -44,15 +44,16 @@ importers:
       '@meojs/utils':
         specifier: ^1.0.4
         version: 1.0.4
+    devDependencies:
       '@types/node':
         specifier: ^20
         version: 20.17.24
 
   packages/fs:
     dependencies:
-      '@meojs/types':
-        specifier: ^1.0.1
-        version: 1.0.1
+      '@meojs/fs-constants':
+        specifier: workspace:^
+        version: link:../fs-constants
       '@meojs/utils':
         specifier: ^1.0.4
         version: 1.0.4
@@ -60,6 +61,44 @@ importers:
       '@types/node':
         specifier: ^20
         version: 20.17.24
+
+  packages/fs-constants: {}
+
+  packages/path:
+    dependencies:
+      '@meojs/pal':
+        specifier: workspace:^
+        version: link:../core
+      '@meojs/path-constants':
+        specifier: ^1.0.0
+        version: link:../path-constants
+      '@meojs/process':
+        specifier: workspace:^
+        version: link:../process
+      pathe:
+        specifier: ^2.0.3
+        version: 2.0.3
+    devDependencies:
+      '@types/node':
+        specifier: ^20
+        version: 20.17.24
+
+  packages/path-constants: {}
+
+  packages/process:
+    dependencies:
+      '@meojs/fs-constants':
+        specifier: workspace:^
+        version: link:../fs-constants
+      '@meojs/pal':
+        specifier: workspace:^
+        version: link:../core
+      '@meojs/path-constants':
+        specifier: ^1.0.0
+        version: link:../path-constants
+      '@meojs/utils':
+        specifier: ^1.0.4
+        version: 1.0.4
 
 packages:
 

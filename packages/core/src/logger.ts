@@ -23,9 +23,14 @@ export const log: InternalLogger = console;
  */
 export function createPalLogger(pluginId: string) {
     return {
-        unsupport(prop: string) {
+        notSupport(prop: string) {
             log.error(
                 `current environment ${ENV_NAME} does not support ${pluginId}.${prop}.`,
+            );
+        },
+        notSupportMessage(prop: string, message: string) {
+            log.error(
+                `current environment ${ENV_NAME}'s ${pluginId}.${prop} ${message}.`,
             );
         },
     };

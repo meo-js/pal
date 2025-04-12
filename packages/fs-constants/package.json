@@ -1,10 +1,11 @@
 {
-  "name": "@meojs/pal",
+  "name": "@meojs/fs-constants",
   "version": "1.0.0",
+  "packageManager": "pnpm@10.8.0",
   "engines": {
     "node": ">=20"
   },
-  "description": "A unified platform abstraction layer.",
+  "description": "A part of @meojs/fs, split due to circular reference.",
   "author": {
     "name": "SmallMain",
     "email": "smallmain@outlook.com",
@@ -14,7 +15,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/meo-js/pal.git",
-    "directory": "packages/core"
+    "directory": "packages/fs-constants"
   },
   "bugs": "https://github.com/meo-js/pal/issues",
   "license": "MIT",
@@ -39,12 +40,5 @@
     "dev": "npx unbuild --watch",
     "clean": "rimraf ./dist",
     "lint": "eslint"
-  },
-  "dependencies": {
-    "@meojs/types": "^1.0.1",
-    "@meojs/utils": "^1.0.4"
-  },
-  "devDependencies": {
-    "@types/node": "^20"
   }
 }

@@ -1,3 +1,4 @@
+import type { StringEncoding } from "@meojs/fs-constants";
 import { isString } from "@meojs/utils";
 import { dirname } from "@meojs/utils/path";
 import { mkdir, readdir } from "./impls/nodejs/fs.js";
@@ -100,9 +101,9 @@ export async function readDir(
     opts?:
         | (ReadDirOptions & {
               withDirent?: false;
-              encoding?: Exclude<Encoding, Encoding.Binary>;
+              encoding?: StringEncoding;
           })
-        | Exclude<Encoding, Encoding.Binary>,
+        | StringEncoding,
 ): Promise<string[]>;
 export async function readDir(
     path: string | Uint8String,
@@ -117,9 +118,9 @@ export async function readDir(
     opts:
         | (ReadDirOptions & {
               withDirent?: boolean;
-              encoding?: Exclude<Encoding, Encoding.Binary>;
+              encoding?: StringEncoding;
           })
-        | Exclude<Encoding, Encoding.Binary>,
+        | StringEncoding,
 ): Promise<string[] | Dirent[]>;
 export async function readDir(
     path: string | Uint8String,

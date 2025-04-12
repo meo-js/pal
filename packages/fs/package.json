@@ -15,7 +15,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/meo-js/pal.git",
-    "directory": "packages/core"
+    "directory": "packages/fs"
   },
   "bugs": "https://github.com/meo-js/pal/issues",
   "license": "MIT",
@@ -41,11 +41,11 @@
     "clean": "rimraf ./dist",
     "lint": "eslint"
   },
-  "dependencies": {
-    "@meojs/types": "^1.0.1",
-    "@meojs/utils": "^1.0.4"
-  },
   "devDependencies": {
     "@types/node": "^20"
+  },
+  "dependencies": {
+    "@meojs/fs-constants": "workspace:^",
+    "@meojs/utils": "^1.0.4"
   }
 }

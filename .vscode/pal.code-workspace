@@ -10,6 +10,18 @@
 			"path": "../packages/fs"
 		},
 		{
+			"path": "../packages/fs-constants"
+		},
+		{
+			"path": "../packages/path"
+		},
+		{
+			"path": "../packages/path-constants"
+		},
+		{
+			"path": "../packages/process"
+		},
+		{
 			"path": "/Users/smallmain/Documents/Work/xenon-studio/xenon.js/src/pal"
 		}
 	],

@@ -1,19 +1,6 @@
 import { BaseError, createErrorFactory } from "@meojs/utils";
 
 /**
- * 数据编码枚举
- */
-export enum Encoding {
-    Utf8 = "utf8",
-    Utf16le = "utf16le",
-    Base64 = "base64",
-    Base64url = "base64url",
-    Latin1 = "latin1",
-    Hex = "hex",
-    Binary = "binary",
-}
-
-/**
  * 文件权限掩码枚举
  *
  * 你也可以使用八进制数值来表示权限掩码，例如 `0o755`。
@@ -156,3 +143,5 @@ export class Error extends BaseError<ErrorCode> {}
  * 文件系统错误创建工厂
  */
 export const e = createErrorFactory(Error, ErrorCode);
+
+export { Encoding } from "@meojs/fs-constants";

@@ -1,3 +1,4 @@
+import type { StringEncoding } from "@meojs/fs-constants";
 import {
     isFunction,
     isObject,
@@ -37,7 +38,7 @@ export interface WriteFileOptions {
      *
      * @default Encoding.Utf8
      */
-    encoding?: Exclude<Encoding, Encoding.Binary>;
+    encoding?: StringEncoding;
 
     /**
      * 权限
@@ -74,7 +75,7 @@ export interface ModifyFileOptions {
      *
      * @default Encoding.Utf8
      */
-    writeEncoding?: Exclude<Encoding, Encoding.Binary>;
+    writeEncoding?: StringEncoding;
 
     /**
      * 权限
@@ -114,7 +115,7 @@ export interface ReadFileOptions {
 export async function write(
     path: string | Uint8String,
     data: FileData,
-    opts?: WriteFileOptions | Exclude<Encoding, Encoding.Binary>,
+    opts?: WriteFileOptions | StringEncoding,
 ): Promise<void>;
 export async function write(
     path: string | Uint8String,
@@ -126,9 +127,7 @@ export async function write(
 export async function write(
     path: string | Uint8String,
     data: FileDataModifier<string>,
-    opts?:
-        | (ModifyFileOptions & { encoding: Exclude<Encoding, Encoding.Binary> })
-        | Exclude<Encoding, Encoding.Binary>,
+    opts?: (ModifyFileOptions & { encoding: StringEncoding }) | StringEncoding,
 ): Promise<void>;
 export async function write(
     path: string | Uint8String,
@@ -175,9 +174,7 @@ export async function read(
 ): Promise<Uint8Array>;
 export async function read(
     path: string | Uint8String,
-    opts:
-        | (ReadFileOptions & { encoding: Exclude<Encoding, Encoding.Binary> })
-        | Exclude<Encoding, Encoding.Binary>,
+    opts: (ReadFileOptions & { encoding: StringEncoding }) | StringEncoding,
 ): Promise<string>;
 export async function read(
     path: string | Uint8String,
@@ -196,7 +193,7 @@ export async function read(
 export async function append(
     path: string | Uint8String,
     data: FileData,
-    opts?: WriteFileOptions | Exclude<Encoding, Encoding.Binary>,
+    opts?: WriteFileOptions | StringEncoding,
 ): Promise<void> {
     await makeParentDir(path);
     await appendFile(path, data, opts);
