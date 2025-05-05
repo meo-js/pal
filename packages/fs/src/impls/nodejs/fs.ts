@@ -1,3 +1,9 @@
+/**
+ * @module
+ *
+ * @internal
+ */
+import type { PathBuffer, PathLike } from "@meojs/path";
 import {
     isArray,
     isArrayBuffer,
@@ -7,8 +13,8 @@ import {
     isObject,
     isString,
     isUint8Array,
-    type Any,
-} from "@meojs/utils";
+} from "@meojs/std/guard";
+import type { uncertain } from "@meojs/std/ts";
 import {
     constants,
     Dirent as Dirent_Impl,
@@ -16,7 +22,7 @@ import {
     type BigIntStats as BigIntStats_Impl,
     type MakeDirectoryOptions,
     type Mode as Mode_Impl,
-    type PathLike,
+    type PathLike as PathLike_Impl,
 } from "fs";
 import fs from "fs/promises";
 import type { MakeDirOptions, ReadDirOptions } from "../../dir.js";
@@ -26,7 +32,7 @@ import type {
     ReadFileOptions,
     WriteFileOptions,
 } from "../../file.js";
-import { Access, e, Encoding, Mode, type Uint8String } from "../../shared.js";
+import { Access, e, Encoding, Mode } from "../../shared.js";
 import { BigIntStat, Dirent, Stat } from "./stat.js";
 
 export function impl2Mode(impl: Extract<Mode_Impl, number>): Mode {
@@ -117,6 +123,9 @@ export function encoding2Impl(encoding: Encoding): BufferEncoding | "buffer" {
             return "utf8";
         case Encoding.Utf16le:
             return "utf16le";
+        case Encoding.Utf16be:
+            // TODO
+            return "utf16be" as never;
         case Encoding.Base64:
             return "base64";
         case Encoding.Base64url:
@@ -181,7 +190,7 @@ export function impl2Error(impl: unknown) {
     return impl;
 }
 
-export function path2impl(path: string | Uint8String): PathLike {
+export function path2impl(path: PathLike): PathLike_Impl {
     return isString(path) ? path : uint8Array2Buffer(path);
 }
 
@@ -329,7 +338,7 @@ export function wrap<T extends Function>(fn: T): T {
     } as unknown as T;
 }
 
-export function wrap2<T extends (...args: Any) => Any, P1, P2, R>(
+export function wrap2<T extends (...args: uncertain) => unknown, P1, P2, R>(
     fn: T,
     arg1: (v: P1) => Parameters<T>[0],
     arg2: (v: P2) => Parameters<T>[1],
@@ -344,7 +353,7 @@ export function wrap2<T extends (...args: Any) => Any, P1, P2, R>(
     };
 }
 
-export function wrap3<T extends (...args: Any) => Any, P1, P2, P3, R>(
+export function wrap3<T extends (...args: uncertain) => unknown, P1, P2, P3, R>(
     fn: T,
     arg1: (v: P1) => Parameters<T>[0],
     arg2: (v: P2) => Parameters<T>[1],
@@ -387,7 +396,7 @@ export const readdir = wrap2(
     readdirOptions2impl,
     impl2Return<
         Awaited<ReturnType<typeof fs.readdir>>,
-        Dirent[] | string[] | Uint8String[]
+        Dirent[] | string[] | PathBuffer[]
     >,
 );
 

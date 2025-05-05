@@ -15,8 +15,8 @@ importers:
         specifier: ^19.8.0
         version: 19.8.0
       '@meojs/cfgs':
-        specifier: ^2.0.12
-        version: 2.0.12(eslint@9.22.0(jiti@2.4.2))(prettier@3.5.3)(typescript@5.7.3)
+        specifier: ^2.0.13
+        version: 2.0.13(eslint@9.22.0(jiti@2.4.2))(prettier@3.5.3)(typescript@5.7.3)
       cross-env:
         specifier: ^7.0.3
         version: 7.0.3
@@ -24,8 +24,8 @@ importers:
         specifier: ^9.22.0
         version: 9.22.0(jiti@2.4.2)
       lint-staged:
-        specifier: ^15.5.0
-        version: 15.5.0
+        specifier: ^15.5.1
+        version: 15.5.1
       prettier:
         specifier: ^3.5.3
         version: 3.5.3
@@ -33,17 +33,17 @@ importers:
         specifier: ^6.0.1
         version: 6.0.1
       simple-git-hooks:
-        specifier: ^2.11.1
-        version: 2.11.1
+        specifier: ^2.13.0
+        version: 2.13.0
 
   packages/core:
     dependencies:
+      '@meojs/std':
+        specifier: ^1.0.6
+        version: 1.0.6
       '@meojs/types':
         specifier: ^1.0.1
         version: 1.0.1
-      '@meojs/utils':
-        specifier: ^1.0.4
-        version: 1.0.4
     devDependencies:
       '@types/node':
         specifier: ^20
@@ -54,9 +54,12 @@ importers:
       '@meojs/fs-constants':
         specifier: workspace:^
         version: link:../fs-constants
-      '@meojs/utils':
-        specifier: ^1.0.4
-        version: 1.0.4
+      '@meojs/path':
+        specifier: workspace:^
+        version: link:../path
+      '@meojs/std':
+        specifier: ^1.0.6
+        version: 1.0.6
     devDependencies:
       '@types/node':
         specifier: ^20
@@ -70,7 +73,7 @@ importers:
         specifier: workspace:^
         version: link:../core
       '@meojs/path-constants':
-        specifier: ^1.0.0
+        specifier: workspace:^
         version: link:../path-constants
       '@meojs/process':
         specifier: workspace:^
@@ -94,11 +97,11 @@ importers:
         specifier: workspace:^
         version: link:../core
       '@meojs/path-constants':
-        specifier: ^1.0.0
+        specifier: workspace:^
         version: link:../path-constants
-      '@meojs/utils':
-        specifier: ^1.0.4
-        version: 1.0.4
+      '@meojs/std':
+        specifier: ^1.0.6
+        version: 1.0.6
 
 packages:
 
@@ -272,20 +275,20 @@ packages:
     resolution: {integrity: sha512-O8jcjabXaleOG9DQ0+ARXWZBTfnP4WNAqzuiJK7ll44AmxGKv/J2M4TPjxjY3znBCfvBXFzucm1twdyFybFqEA==}
     engines: {node: '>=12'}
 
-  '@meojs/cfgs@2.0.12':
-    resolution: {integrity: sha512-aEp0dz6Nt9UN0c973HcAXFWi/zfQS6gXaNKg8zCilsIUWHsKJCxBOKKJR6MpHHoUN2dLJJ9h6HeZExJaAimneg==}
+  '@meojs/cfgs@2.0.13':
+    resolution: {integrity: sha512-cH7MgW8Lf12XvTP0R41Il4quetnI9ArxQTgPc2FcW8VJHf9qgceqdyW/850P00YEQtrbkWRBJME2D4uwkvVxcw==}
     engines: {node: '>=20'}
     peerDependencies:
       eslint: ^9.22.0
       prettier: ^3.5.3
       typescript: 5.7.x
 
-  '@meojs/types@1.0.1':
-    resolution: {integrity: sha512-1Jf0uyyueIVGRL73p8Q9xQh1LzjNCfMWNK2//b+T/bWXrHydg4bzbtlXVSs3gj8yhu78u6XLGPn4Dgn5Mx08Ng==}
+  '@meojs/std@1.0.6':
+    resolution: {integrity: sha512-gOus+6ptTRUgZAxmnudbcg+1PrjRmuUQLvHf/UD4iCeXEwHIsh/H79qN1KPSQQvqZI8PXR5WVC29CPsaL3AW9g==}
     engines: {node: '>=20'}
 
-  '@meojs/utils@1.0.4':
-    resolution: {integrity: sha512-rNm1yhSIStTuxetKeFgbRzMfpnHdCZiJNy7KAM07al2c4+ChTNEsO6p607sanNl9F3VM4+zJ5pj24m4k7MKuHw==}
+  '@meojs/types@1.0.1':
+    resolution: {integrity: sha512-1Jf0uyyueIVGRL73p8Q9xQh1LzjNCfMWNK2//b+T/bWXrHydg4bzbtlXVSs3gj8yhu78u6XLGPn4Dgn5Mx08Ng==}
     engines: {node: '>=20'}
 
   '@nodelib/fs.scandir@2.1.5':
@@ -441,6 +444,9 @@ packages:
     resolution: {integrity: sha512-zgVZuo2WcZgfUEmsn6eO3kINexW8RAE4maiQ8QNs8CtpPCSyMiYsULR3HQYkm3w8FIA3SberyMJMSldGsW+U3w==}
     engines: {node: ^12.17.0 || ^14.13 || >=16.0.0}
 
+  chardet@2.1.0:
+    resolution: {integrity: sha512-bNFETTG/pM5ryzQ9Ad0lJOTa6HWD/YsScAR3EnCPZRPlQh77JocYktSHOUHelyhm8IARL+o4c4F1bP5KVOjiRA==}
+
   cli-cursor@5.0.0:
     resolution: {integrity: sha512-aCj4O5wKyszjMmDT4tZj93kxyydN/K5zPWSCe6/0AV/AA1pqe5ZBIw0a2ZfPQV7lL5/yb5HsUreJ6UFAF1tEQw==}
     engines: {node: '>=18'}
@@ -489,6 +495,9 @@ packages:
     resolution: {integrity: sha512-ZPMl0ZJbw74iS9LuX9YIAiW8pfM5p3yh2o/NbXHbkFuZzY5jvdi5jFycEOkmBW5H5I7nA+D6f3UcsCLP2vvSEA==}
     engines: {node: '>=16'}
     hasBin: true
+
+  core-js@3.42.0:
+    resolution: {integrity: sha512-Sz4PP4ZA+Rq4II21qkNqOEDTDrCvcANId3xpIgB34NDkWc3UduWj2dqEtN9yZIq8Dk3HyPI33x9sqqU5C8sr0g==}
 
   cosmiconfig-typescript-loader@6.1.0:
     resolution: {integrity: sha512-tJ1w35ZRUiM5FeTzT7DtYWAFFv37ZLqSRkGi2oeCK1gPhvaWjkAtfXvLmvE1pRfxxp9aQo6ba/Pvg1dKj05D4g==}
@@ -872,8 +881,8 @@ packages:
   lines-and-columns@1.2.4:
     resolution: {integrity: sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==}
 
-  lint-staged@15.5.0:
-    resolution: {integrity: sha512-WyCzSbfYGhK7cU+UuDDkzUiytbfbi0ZdPy2orwtM75P3WTtQBzmG40cCxIa8Ii2+XjfxzLH6Be46tUfWS85Xfg==}
+  lint-staged@15.5.1:
+    resolution: {integrity: sha512-6m7u8mue4Xn6wK6gZvSCQwBvMBR36xfY24nF5bMTf2MHDYG6S3yhJuOgdYVw99hsjyDt2d4z168b3naI8+NWtQ==}
     engines: {node: '>=18.12.0'}
     hasBin: true
 
@@ -1131,8 +1140,8 @@ packages:
     resolution: {integrity: sha512-bzyZ1e88w9O1iNJbKnOlvYTrWPDl46O1bG0D3XInv+9tkPrxrN8jUUTiFlDkkmKWgn1M6CfIA13SuGqOa9Korw==}
     engines: {node: '>=14'}
 
-  simple-git-hooks@2.11.1:
-    resolution: {integrity: sha512-tgqwPUMDcNDhuf1Xf6KTUsyeqGdgKMhzaH4PAZZuzguOgTl5uuyeYe/8mWgAr6IBxB5V06uqEf6Dy37gIWDtDg==}
+  simple-git-hooks@2.13.0:
+    resolution: {integrity: sha512-N+goiLxlkHJlyaYEglFypzVNMaNplPAk5syu0+OPp/Bk6dwVoXF6FfOw2vO0Dp+JHsBaI+w6cm8TnFl2Hw6tDA==}
     hasBin: true
 
   slashes@3.0.12:
@@ -1162,6 +1171,9 @@ packages:
   string-argv@0.3.2:
     resolution: {integrity: sha512-aqD2Q0144Z+/RqG52NeHEkZauTAUWJO8c6yTftGJKO3Tja5tUgIfmIl6kExvhtxSDP7fXB6DvzkfMpCd/F3G+Q==}
     engines: {node: '>=0.6.19'}
+
+  string-ts@2.2.1:
+    resolution: {integrity: sha512-Q2u0gko67PLLhbte5HmPfdOjNvUKbKQM+mCNQae6jE91DmoFHY6HH9GcdqCeNx87DZ2KKjiFxmA0R/42OneGWw==}
 
   string-width@4.2.3:
     resolution: {integrity: sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==}
@@ -1230,8 +1242,8 @@ packages:
     resolution: {integrity: sha512-XleUoc9uwGXqjWwXaUTZAmzMcFZ5858QA2vvx1Ur5xIcixXIP+8LnFDgRplU30us6teqdlskFfu+ae4K79Ooew==}
     engines: {node: '>= 0.8.0'}
 
-  type-fest@4.38.0:
-    resolution: {integrity: sha512-2dBz5D5ycHIoliLYLi0Q2V7KRaDlH0uWIvmk7TYlAg5slqwiPv1ezJdZm1QEM0xgk29oYWMCbIG7E6gHpvChlg==}
+  type-fest@4.40.1:
+    resolution: {integrity: sha512-9YvLNnORDpI+vghLU/Nf+zSv0kL47KbVJ1o3sKgoTefl6i+zebxbiDQWoe/oWWqPhIgQdRZRT1KA9sCPL810SA==}
     engines: {node: '>=16'}
 
   typescript-eslint@8.26.1:
@@ -1523,7 +1535,7 @@ snapshots:
       wrap-ansi: 8.1.0
       wrap-ansi-cjs: wrap-ansi@7.0.0
 
-  '@meojs/cfgs@2.0.12(eslint@9.22.0(jiti@2.4.2))(prettier@3.5.3)(typescript@5.7.3)':
+  '@meojs/cfgs@2.0.13(eslint@9.22.0(jiti@2.4.2))(prettier@3.5.3)(typescript@5.7.3)':
     dependencies:
       '@eslint-community/eslint-plugin-eslint-comments': 4.4.1(eslint@9.22.0(jiti@2.4.2))
       '@eslint/compat': 1.2.7(eslint@9.22.0(jiti@2.4.2))
@@ -1540,14 +1552,16 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+  '@meojs/std@1.0.6':
+    dependencies:
+      chardet: 2.1.0
+      core-js: 3.42.0
+      string-ts: 2.2.1
+      type-fest: 4.40.1
+
   '@meojs/types@1.0.1':
     dependencies:
       '@types/node': 20.17.24
-
-  '@meojs/utils@1.0.4':
-    dependencies:
-      pathe: 2.0.3
-      type-fest: 4.38.0
 
   '@nodelib/fs.scandir@2.1.5':
     dependencies:
@@ -1725,6 +1739,8 @@ snapshots:
 
   chalk@5.4.1: {}
 
+  chardet@2.1.0: {}
+
   cli-cursor@5.0.0:
     dependencies:
       restore-cursor: 5.1.0
@@ -1773,6 +1789,8 @@ snapshots:
       is-text-path: 2.0.0
       meow: 12.1.1
       split2: 4.2.0
+
+  core-js@3.42.0: {}
 
   cosmiconfig-typescript-loader@6.1.0(@types/node@22.13.13)(cosmiconfig@9.0.0(typescript@5.7.3))(typescript@5.7.3):
     dependencies:
@@ -2149,7 +2167,7 @@ snapshots:
 
   lines-and-columns@1.2.4: {}
 
-  lint-staged@15.5.0:
+  lint-staged@15.5.1:
     dependencies:
       chalk: 5.4.1
       commander: 13.1.0
@@ -2372,7 +2390,7 @@ snapshots:
 
   signal-exit@4.1.0: {}
 
-  simple-git-hooks@2.11.1: {}
+  simple-git-hooks@2.13.0: {}
 
   slashes@3.0.12: {}
 
@@ -2398,6 +2416,8 @@ snapshots:
   split2@4.2.0: {}
 
   string-argv@0.3.2: {}
+
+  string-ts@2.2.1: {}
 
   string-width@4.2.3:
     dependencies:
@@ -2460,7 +2480,7 @@ snapshots:
     dependencies:
       prelude-ls: 1.2.1
 
-  type-fest@4.38.0: {}
+  type-fest@4.40.1: {}
 
   typescript-eslint@8.26.1(eslint@9.22.0(jiti@2.4.2))(typescript@5.7.3):
     dependencies:

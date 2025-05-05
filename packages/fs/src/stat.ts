@@ -1,4 +1,5 @@
-import { isBigInt } from "@meojs/utils";
+import type { PathLike } from "@meojs/path";
+import { isBigInt } from "@meojs/std/guard";
 import { readDir } from "./dir.js";
 import {
     access as access_impl,
@@ -11,7 +12,7 @@ import {
     stat,
     utimes,
 } from "./impls/nodejs/fs.js";
-import { Access, type Mode, type Type, type Uint8String } from "./shared.js";
+import { Access, type Mode, type Type } from "./shared.js";
 
 /**
  * 目录条目信息
@@ -243,7 +244,7 @@ export interface SetStatsOptions {
  * 测试是否对指定路径有访问权限
  */
 export async function hasAccess(
-    path: string | Uint8String,
+    path: PathLike,
     access: Access = Access.Visible,
 ) {
     try {
@@ -258,19 +259,19 @@ export async function hasAccess(
  * 获取文件信息
  */
 export async function getStats(
-    path: string | Uint8String,
+    path: PathLike,
     opts?: GetStatsOptions & { bigint?: false },
 ): Promise<Stat>;
 export async function getStats(
-    path: string | Uint8String,
+    path: PathLike,
     opts: GetStatsOptions & { bigint: true },
 ): Promise<BigIntStat>;
 export async function getStats(
-    path: string | Uint8String,
+    path: PathLike,
     opts?: GetStatsOptions,
 ): Promise<Stat | BigIntStat>;
 export async function getStats(
-    path: string | Uint8String,
+    path: PathLike,
     opts: GetStatsOptions = {},
 ): Promise<Stat | BigIntStat> {
     const { bigint = false, preserveSymlinks = false } = opts;
@@ -286,7 +287,7 @@ export async function getStats(
  * 设置文件信息
  */
 export async function setStats(
-    path: string | Uint8String,
+    path: PathLike,
     opts: SetStatsOptions = {},
 ): Promise<void> {
     const { mode, owner, time, preserveSymlinks = false } = opts;
@@ -333,7 +334,7 @@ export async function setStats(
 /**
  * 检查文件或目录是否存在
  */
-export async function exists(path: string | Uint8String): Promise<boolean> {
+export async function exists(path: PathLike): Promise<boolean> {
     return await hasAccess(path);
 }
 
@@ -341,7 +342,7 @@ export async function exists(path: string | Uint8String): Promise<boolean> {
  * 获取文件权限
  */
 export async function getMode(
-    path: string | Uint8String,
+    path: PathLike,
     opts?: Pick<GetStatsOptions, "preserveSymlinks">,
 ): Promise<Mode> {
     const stats = await getStats(path, opts);
@@ -352,7 +353,7 @@ export async function getMode(
  * 设置文件权限
  */
 export async function setMode(
-    path: string | Uint8String,
+    path: PathLike,
     mode: Mode,
     opts: Pick<SetStatsOptions, "preserveSymlinks"> & {
         /**
@@ -392,19 +393,19 @@ export async function setMode(
  * 获取文件所有者
  */
 export async function getOwner(
-    path: string | Uint8String,
+    path: PathLike,
     opts?: GetStatsOptions & { bigint?: false },
 ): Promise<{ userId: number; groupId: number }>;
 export async function getOwner(
-    path: string | Uint8String,
+    path: PathLike,
     opts: GetStatsOptions & { bigint: true },
 ): Promise<{ userId: bigint; groupId: bigint }>;
 export async function getOwner(
-    path: string | Uint8String,
+    path: PathLike,
     opts?: GetStatsOptions,
 ): Promise<{ userId: number | bigint; groupId: number | bigint }>;
 export async function getOwner(
-    path: string | Uint8String,
+    path: PathLike,
     opts?: GetStatsOptions,
 ): Promise<{ userId: number | bigint; groupId: number | bigint }> {
     const stats = await getStats(path, opts);
@@ -418,7 +419,7 @@ export async function getOwner(
  * 设置文件所有者
  */
 export async function setOwner(
-    path: string | Uint8String,
+    path: PathLike,
     userId: number | bigint,
     groupId: number | bigint,
     opts: Pick<SetStatsOptions, "preserveSymlinks"> & {
@@ -447,19 +448,19 @@ export async function setOwner(
  * 获取文件大小（字节）
  */
 export async function getSize(
-    path: string | Uint8String,
+    path: PathLike,
     opts?: GetStatsOptions & { bigint?: false },
 ): Promise<number>;
 export async function getSize(
-    path: string | Uint8String,
+    path: PathLike,
     opts: GetStatsOptions & { bigint: true },
 ): Promise<bigint>;
 export async function getSize(
-    path: string | Uint8String,
+    path: PathLike,
     opts?: GetStatsOptions,
 ): Promise<number | bigint>;
 export async function getSize(
-    path: string | Uint8String,
+    path: PathLike,
     opts?: GetStatsOptions,
 ): Promise<number | bigint> {
     const stats = await getStats(path, opts);
@@ -470,7 +471,7 @@ export async function getSize(
  * 设置文件时间戳
  */
 export async function setTime(
-    path: string | Uint8String,
+    path: PathLike,
     accessTime: number | bigint,
     modifyTime: number | bigint,
     opts: Pick<SetStatsOptions, "preserveSymlinks"> = {},
@@ -495,19 +496,19 @@ export async function setTime(
  * 获取文件上次访问时间（毫秒）
  */
 export async function getAccessTime(
-    path: string | Uint8String,
+    path: PathLike,
     opts?: GetStatsOptions & { bigint?: false },
 ): Promise<number>;
 export async function getAccessTime(
-    path: string | Uint8String,
+    path: PathLike,
     opts: GetStatsOptions & { bigint: true },
 ): Promise<bigint>;
 export async function getAccessTime(
-    path: string | Uint8String,
+    path: PathLike,
     opts?: GetStatsOptions,
 ): Promise<number | bigint>;
 export async function getAccessTime(
-    path: string | Uint8String,
+    path: PathLike,
     opts?: GetStatsOptions,
 ): Promise<number | bigint> {
     const stats = await getStats(path, opts);
@@ -518,19 +519,19 @@ export async function getAccessTime(
  * 获取文件最后修改时间（毫秒）
  */
 export async function getModifiedTime(
-    path: string | Uint8String,
+    path: PathLike,
     opts?: GetStatsOptions & { bigint?: false },
 ): Promise<number>;
 export async function getModifiedTime(
-    path: string | Uint8String,
+    path: PathLike,
     opts: GetStatsOptions & { bigint: true },
 ): Promise<bigint>;
 export async function getModifiedTime(
-    path: string | Uint8String,
+    path: PathLike,
     opts?: GetStatsOptions,
 ): Promise<number | bigint>;
 export async function getModifiedTime(
-    path: string | Uint8String,
+    path: PathLike,
     opts?: GetStatsOptions,
 ): Promise<number | bigint> {
     const stats = await getStats(path, opts);
@@ -541,19 +542,19 @@ export async function getModifiedTime(
  * 获取文件状态最后变更时间（毫秒）
  */
 export async function getChangeTime(
-    path: string | Uint8String,
+    path: PathLike,
     opts?: GetStatsOptions & { bigint?: false },
 ): Promise<number>;
 export async function getChangeTime(
-    path: string | Uint8String,
+    path: PathLike,
     opts: GetStatsOptions & { bigint: true },
 ): Promise<bigint>;
 export async function getChangeTime(
-    path: string | Uint8String,
+    path: PathLike,
     opts?: GetStatsOptions,
 ): Promise<number | bigint>;
 export async function getChangeTime(
-    path: string | Uint8String,
+    path: PathLike,
     opts?: GetStatsOptions,
 ): Promise<number | bigint> {
     const stats = await getStats(path, opts);
@@ -564,19 +565,19 @@ export async function getChangeTime(
  * 获取文件创建时间（毫秒）
  */
 export async function getBirthTime(
-    path: string | Uint8String,
+    path: PathLike,
     opts?: GetStatsOptions & { bigint?: false },
 ): Promise<number>;
 export async function getBirthTime(
-    path: string | Uint8String,
+    path: PathLike,
     opts: GetStatsOptions & { bigint: true },
 ): Promise<bigint>;
 export async function getBirthTime(
-    path: string | Uint8String,
+    path: PathLike,
     opts?: GetStatsOptions,
 ): Promise<number | bigint>;
 export async function getBirthTime(
-    path: string | Uint8String,
+    path: PathLike,
     opts?: GetStatsOptions,
 ): Promise<number | bigint> {
     const stats = await getStats(path, opts);
@@ -587,7 +588,7 @@ export async function getBirthTime(
  * 检查路径是否为文件
  */
 export async function isFile(
-    path: string | Uint8String,
+    path: PathLike,
     opts?: Pick<GetStatsOptions, "preserveSymlinks">,
 ): Promise<boolean> {
     try {
@@ -602,7 +603,7 @@ export async function isFile(
  * 检查路径是否为目录
  */
 export async function isDir(
-    path: string | Uint8String,
+    path: PathLike,
     opts?: Pick<GetStatsOptions, "preserveSymlinks">,
 ): Promise<boolean> {
     try {
@@ -616,7 +617,7 @@ export async function isDir(
 /**
  * 检查路径是否为符号链接
  */
-export async function isSymlink(path: string | Uint8String): Promise<boolean> {
+export async function isSymlink(path: PathLike): Promise<boolean> {
     try {
         const stats = await getStats(path, { preserveSymlinks: true });
         return stats.isSymbolicLink();
@@ -628,7 +629,7 @@ export async function isSymlink(path: string | Uint8String): Promise<boolean> {
 /**
  * 检查目录是否为空
  */
-export async function isEmptyDir(path: string | Uint8String): Promise<boolean> {
+export async function isEmptyDir(path: PathLike): Promise<boolean> {
     try {
         const items = await readDir(path);
         return items.length === 0;

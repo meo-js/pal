@@ -42,7 +42,7 @@
   },
   "dependencies": {
     "@meojs/types": "^1.0.1",
-    "@meojs/utils": "^1.0.4"
+    "@meojs/std": "^1.0.6"
   },
   "devDependencies": {
     "@types/node": "^20"

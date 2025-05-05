@@ -1,7 +1,7 @@
 import { Encoding, type StringEncoding } from "@meojs/fs-constants";
 import { createPalLogger, isNodeJSLike } from "@meojs/pal";
-import type { PathBuffer } from "@meojs/path-constants";
-import { isUint8Array } from "@meojs/utils";
+import type { PathBuffer, PathLike } from "@meojs/path-constants";
+import { isUint8Array } from "@meojs/std/guard";
 
 const log = createPalLogger("process");
 
@@ -12,10 +12,8 @@ let _currentDir: string = "/";
  */
 export function getCurrentDir(encoding?: StringEncoding): string;
 export function getCurrentDir(encoding: Encoding.Binary): PathBuffer;
-export function getCurrentDir(encoding?: Encoding): string | PathBuffer;
-export function getCurrentDir(
-    encoding: Encoding = Encoding.Utf8,
-): string | PathBuffer {
+export function getCurrentDir(encoding?: Encoding): PathLike;
+export function getCurrentDir(encoding: Encoding = Encoding.Utf8): PathLike {
     if (encoding !== Encoding.Utf8) {
         log.notSupportMessage(
             "currentDir",

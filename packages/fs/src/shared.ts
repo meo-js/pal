@@ -1,4 +1,4 @@
-import { BaseError, createErrorFactory } from "@meojs/utils";
+import { BaseError, defineErrors } from "@meojs/std/error";
 
 /**
  * 文件权限掩码枚举
@@ -98,11 +98,6 @@ export enum Type {
 }
 
 /**
- * 存储在 {@link Uint8Array} 中的字符串类型
- */
-export type Uint8String = Uint8Array;
-
-/**
  * 文件系统错误代码枚举
  */
 export enum ErrorCode {
@@ -140,8 +135,10 @@ export enum ErrorCode {
 export class Error extends BaseError<ErrorCode> {}
 
 /**
- * 文件系统错误创建工厂
+ * 文件系统错误
+ *
+ * @internal
  */
-export const e = createErrorFactory(Error, ErrorCode);
+export const e = defineErrors(Error, ErrorCode);
 
 export { Encoding } from "@meojs/fs-constants";

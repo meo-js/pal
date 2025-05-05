@@ -42,9 +42,9 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@meojs/path-constants": "^1.0.0",
     "@meojs/fs-constants": "workspace:^",
     "@meojs/pal": "workspace:^",
-    "@meojs/utils": "^1.0.4"
+    "@meojs/path-constants": "workspace:^",
+    "@meojs/std": "^1.0.6"
   }
 }

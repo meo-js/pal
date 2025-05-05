@@ -3,6 +3,7 @@ import {
     isAndroid,
     isBrowser,
     isBun,
+    isDeno,
     isHarmonyOS,
     isIOS,
     isLinux,
@@ -25,9 +26,11 @@ export const platform = isWechat()
       ? Platform.Browser
       : isBun()
         ? Platform.Bun
-        : isNodeJS()
-          ? Platform.NodeJS
-          : Platform.Unknown;
+        : isDeno()
+          ? Platform.Deno
+          : isNodeJS()
+            ? Platform.NodeJS
+            : Platform.Unknown;
 
 /**
  * 当前系统
@@ -71,10 +74,8 @@ export const MAX_WORKER_COUNT = isWechat() ? 1 : Number.POSITIVE_INFINITY;
 
 /**
  * 最大调用栈大小
- *
- * 当无法拿到真实值时会返回一个相对安全值：`10000`
  */
-export const MAX_CALLSTACK_SIZE = 10000;
+export const MAX_CALLSTACK_SIZE = 1024 * 4;
 
 /**
  * 当前环境名称

@@ -1,5 +1,6 @@
+import type { PathLike } from "@meojs/path";
 import { readDir } from "./dir.js";
-import { e, Encoding, type Uint8String } from "./shared.js";
+import { e, Encoding } from "./shared.js";
 import { getStats, type Dirent } from "./stat.js";
 
 /**
@@ -29,8 +30,6 @@ export interface WalkOptions {
 
     /**
      * 指定返回文件路径的编码格式
-     *
-     * 所有数据编码均为小端序。
      *
      * @default Encoding.Utf8
      */
@@ -74,7 +73,7 @@ enum WalkState {
 }
 
 interface WalkContext {
-    controller: ReadableStreamDefaultController<string | Uint8String | Dirent>;
+    controller: ReadableStreamDefaultController<PathLike | Dirent>;
     state: WalkState;
     queue: WalkItem[];
     processing: number;
@@ -98,9 +97,9 @@ interface WalkItem {
 }
 
 export function walk(
-    path: string | Uint8String,
+    path: PathLike,
     opts?: WalkOptions,
-): ReadableStream<string | Uint8String | Dirent> {
+): ReadableStream<PathLike | Dirent> {
     const {
         concurrency = Number.POSITIVE_INFINITY,
         highWaterMark = Number.POSITIVE_INFINITY,
@@ -114,7 +113,7 @@ export function walk(
 
     let ctx: WalkContext;
 
-    return new ReadableStream<string | Uint8String | Dirent>(
+    return new ReadableStream<PathLike | Dirent>(
         {
             async start(controller) {
                 const stats = await getStats(path);

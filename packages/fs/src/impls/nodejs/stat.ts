@@ -1,4 +1,9 @@
-import { resolve } from "@meojs/utils/path";
+/**
+ * @module
+ *
+ * @internal
+ */
+import { resolve } from "@meojs/path";
 import {
     constants,
     Dirent as Dirent_Impl,
@@ -13,7 +18,7 @@ import type {
 } from "../../stat.js";
 
 /**
- * {@inheritdoc I_Dirent}
+ * {@link I_Dirent} 的 NodeJS 实现
  */
 export class Dirent implements I_Dirent {
     protected _impl: Dirent_Impl;
@@ -68,6 +73,7 @@ export class Dirent implements I_Dirent {
     }
 }
 
+// Stat 和 BigIntStat 两种类型的共有属性
 type I_StatBase = Pick<
     I_Stat,
     | "type"
@@ -81,6 +87,9 @@ type I_StatBase = Pick<
     | "isSymbolicLink"
 >;
 
+/**
+ * {@link I_StatBase} 的 NodeJS 实现
+ */
 class StatBase<T extends Stats_Impl | BigIntStats_Impl> implements I_StatBase {
     protected _impl: T;
 
@@ -155,7 +164,7 @@ class StatBase<T extends Stats_Impl | BigIntStats_Impl> implements I_StatBase {
 }
 
 /**
- * {@inheritdoc I_Stat}
+ * {@link I_Stat} 的 NodeJS 实现
  */
 export class Stat extends StatBase<Stats_Impl> implements I_Stat {
     public get userId(): number {
@@ -188,7 +197,7 @@ export class Stat extends StatBase<Stats_Impl> implements I_Stat {
 }
 
 /**
- * {@inheritdoc I_BigIntStat}
+ * {@link I_BigIntStat} 的 NodeJS 实现
  */
 export class BigIntStat
     extends StatBase<BigIntStats_Impl>

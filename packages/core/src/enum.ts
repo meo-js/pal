@@ -1,31 +1,38 @@
 /**
  * 平台枚举
+ *
+ * 键值参考 [W3C Runtime Keys](https://runtime-keys.proposal.wintercg.org/)
  */
 export enum Platform {
     /**
      * 未知平台
      */
-    Unknown = "Unknown",
+    Unknown = "unknown",
 
     /**
      * 浏览器
      */
-    Browser = "Browser",
+    Browser = "browser",
 
     /**
      * 微信小程序/小游戏
      */
-    Wechat = "Wechat",
+    Wechat = "wechat",
 
     /**
      * Node.js
      */
-    NodeJS = "NodeJS",
+    NodeJS = "node",
 
     /**
      * Bun
      */
-    Bun = "Bun",
+    Bun = "bun",
+
+    /**
+     * Deno
+     */
+    Deno = "deno",
 }
 
 /**
@@ -35,42 +42,42 @@ export enum System {
     /**
      * 未知
      */
-    Unknown = "Unknown",
+    Unknown = "unknown",
 
     /**
      * IOS / IPadOS
      */
-    IOS = "iOS",
+    IOS = "ios",
 
     /**
      * Android
      */
-    Android = "Android",
+    Android = "android",
 
     /**
      * Windows
      */
-    Windows = "Windows",
+    Windows = "windows",
 
     /**
      * Linux
      */
-    Linux = "Linux",
+    Linux = "linux",
 
     /**
      * Mac
      */
-    Mac = "MacOS",
+    Mac = "macos",
 
     /**
      * 鸿蒙系统
      */
-    HarmonyOS = "HarmonyOS",
+    HarmonyOS = "harmonyos",
 
     /**
      * 开放鸿蒙
      */
-    OpenHarmony = "OpenHarmony",
+    OpenHarmony = "openharmony",
 }
 
 /**
@@ -85,7 +92,7 @@ export enum PlatformSpec {
     /**
      * 兼容 [NodeJS](https://nodejs.org/) 的运行时
      */
-    NodeJSLike = "nodejs-like",
+    NodeJSLike = "nodejslike",
 
     /**
      * 符合 [W3C](https://www.w3.org/) 规范的运行时
@@ -100,25 +107,25 @@ export enum ScriptEngine {
     /**
      * 未知
      */
-    Unknown = "Unknown",
+    Unknown = "unknown",
 
     /**
      * Google V8
      */
-    V8 = "V8",
+    V8 = "v8",
 
     /**
      * Apple JavaScriptCore
      */
-    JavaScriptCore = "JavaScriptCore",
+    JavaScriptCore = "javascriptcore",
 
     /**
      * Mozilla SpiderMonkey
      */
-    SpiderMonkey = "SpiderMonkey",
+    SpiderMonkey = "spidermonkey",
 
     /**
      * Fabrice Bellard QuickJS
      */
-    QuickJS = "QuickJS",
+    QuickJS = "quickjs",
 }

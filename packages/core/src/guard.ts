@@ -14,14 +14,14 @@ declare const wx: unknown;
  * 是否处于 {@link PlatformSpec.NodeJSLike} 平台
  */
 export function isNodeJSLike() {
-    return isNodeJS() || isBun();
+    return isNodeJS() || isBun() || isDeno();
 }
 
 /**
  * 是否处于 {@link PlatformSpec.WinterTC} 平台
  */
 export function isWinterTC() {
-    return isNodeJS() || isBun() || isBrowser();
+    return isNodeJS() || isBun() || isDeno() || isBrowser();
 }
 
 /**
@@ -83,6 +83,21 @@ export function isBun() {
 
     // https://bun.sh/guides/util/detect-bun
     return isNodelike && process.versions.bun != null;
+}
+
+/**
+ * 是否处于 {@link Platform.Deno} 平台
+ */
+export function isDeno() {
+    if (COCOS) {
+        return false;
+    }
+
+    // 兼容 NodeJS 的平台应该存在 process 对象
+    const isNodelike = typeof process !== "undefined";
+
+    // @ts-expect-error -- checked.
+    return isNodelike && globalThis.Deno != null;
 }
 
 /**

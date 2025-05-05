@@ -4,24 +4,28 @@ import { ENV_NAME } from "./env.js";
  * 内部日志记录器接口
  *
  * 默认为 {@link console}
+ *
+ * @internal
  */
 export interface InternalLogger {
-    trace(...msgs: any[]): void;
-    debug(...msgs: any[]): void;
-    info(...msgs: any[]): void;
-    warn(...msgs: any[]): void;
-    error(...msgs: any[]): void;
+    trace(...msgs: unknown[]): void;
+    debug(...msgs: unknown[]): void;
+    info(...msgs: unknown[]): void;
+    warn(...msgs: unknown[]): void;
+    error(...msgs: unknown[]): void;
 }
 
 /**
  * 内部日志记录器
+ *
+ * @internal
  */
 export const log: InternalLogger = console;
 
 /**
- * 创建 `pal` 插件专用的日志记录器
+ * 创建 `pal` 插件通用的日志记录器
  */
-export function createPalLogger(pluginId: string) {
+export function createLogger(pluginId: string) {
     return {
         notSupport(prop: string) {
             log.error(

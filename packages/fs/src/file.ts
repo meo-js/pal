@@ -1,10 +1,8 @@
 import type { StringEncoding } from "@meojs/fs-constants";
-import {
-    isFunction,
-    isObject,
-    type Any,
-    type MaybePromiseLike,
-} from "@meojs/utils";
+import type { PathLike } from "@meojs/path";
+import { isFunction, isObject } from "@meojs/std/guard";
+import type { PromisableLike } from "@meojs/std/promise";
+import type { uncertain } from "@meojs/std/ts";
 import { makeParentDir } from "./dir.js";
 import {
     appendFile,
@@ -13,19 +11,19 @@ import {
     truncateFile,
     writeFile,
 } from "./impls/nodejs/fs.js";
-import { Encoding, type Mode, type Uint8String } from "./shared.js";
+import { Encoding, type Mode } from "./shared.js";
 
 /**
  * 文件数据修改函数
  */
-export type FileDataModifier<T extends FileData = FileData> = (
+export type FileDataModifier<T extends FileData = uncertain> = (
     data: T | undefined,
-) => MaybePromiseLike<FileData>;
+) => PromisableLike<FileData>;
 
 /**
  * 文件数据支持类型
  */
-export type FileData = string | ArrayBuffer | ArrayBufferView;
+export type FileData = string | BufferSource;
 
 /**
  * 文件写入选项
@@ -33,8 +31,6 @@ export type FileData = string | ArrayBuffer | ArrayBufferView;
 export interface WriteFileOptions {
     /**
      * 当传入 `string` 类型数据时指定编码格式
-     *
-     * 所有数据编码均为小端序。
      *
      * @default Encoding.Utf8
      */
@@ -60,16 +56,12 @@ export interface ModifyFileOptions {
     /**
      * 指定编码格式
      *
-     * 所有数据编码均为小端序。
-     *
      * @default Encoding.Binary
      */
     encoding?: Encoding;
 
     /**
      * 当 {@link FileDataModifier} 返回 `string` 类型数据时指定编码格式
-     *
-     * 所有数据编码均为小端序。
      *
      * 仅当 {@link encoding} 为 {@link Encoding.Binary} 时该选项有效，否则使用 {@link encoding} 的值。
      *
@@ -97,8 +89,6 @@ export interface ReadFileOptions {
     /**
      * 指定编码格式
      *
-     * 所有数据编码均为小端序。
-     *
      * @default Encoding.Binary
      */
     encoding?: Encoding;
@@ -113,30 +103,30 @@ export interface ReadFileOptions {
  * 向文件写入数据
  */
 export async function write(
-    path: string | Uint8String,
+    path: PathLike,
     data: FileData,
     opts?: WriteFileOptions | StringEncoding,
 ): Promise<void>;
 export async function write(
-    path: string | Uint8String,
+    path: PathLike,
     data: FileDataModifier<Uint8Array>,
     opts?:
         | (ModifyFileOptions & { encoding?: Encoding.Binary })
         | Encoding.Binary,
 ): Promise<void>;
 export async function write(
-    path: string | Uint8String,
+    path: PathLike,
     data: FileDataModifier<string>,
     opts?: (ModifyFileOptions & { encoding: StringEncoding }) | StringEncoding,
 ): Promise<void>;
 export async function write(
-    path: string | Uint8String,
+    path: PathLike,
     data: FileDataModifier,
     opts?: ModifyFileOptions | Encoding,
 ): Promise<void>;
 export async function write(
-    path: string | Uint8String,
-    data: FileData | FileDataModifier<Any>,
+    path: PathLike,
+    data: FileData | FileDataModifier,
     opts?: WriteFileOptions | ModifyFileOptions | Encoding,
 ): Promise<void> {
     await makeParentDir(path);
@@ -169,19 +159,19 @@ export async function write(
  * 读取文件数据
  */
 export async function read(
-    path: string | Uint8String,
+    path: PathLike,
     opts?: (ReadFileOptions & { encoding?: Encoding.Binary }) | Encoding.Binary,
 ): Promise<Uint8Array>;
 export async function read(
-    path: string | Uint8String,
+    path: PathLike,
     opts: (ReadFileOptions & { encoding: StringEncoding }) | StringEncoding,
 ): Promise<string>;
 export async function read(
-    path: string | Uint8String,
+    path: PathLike,
     opts?: ReadFileOptions | Encoding,
 ): Promise<Uint8Array | string>;
 export async function read(
-    path: string | Uint8String,
+    path: PathLike,
     opts?: ReadFileOptions | Encoding,
 ): Promise<Uint8Array | string> {
     return await readFile(path, opts);
@@ -191,7 +181,7 @@ export async function read(
  * 向文件末尾追加数据
  */
 export async function append(
-    path: string | Uint8String,
+    path: PathLike,
     data: FileData,
     opts?: WriteFileOptions | StringEncoding,
 ): Promise<void> {
@@ -202,6 +192,6 @@ export async function append(
 /**
  * 将文件内容截断（延长或缩短长度）为 {@link len} 字节
  */
-export async function truncate(path: string | Uint8String, len: number = 0) {
+export async function truncate(path: PathLike, len: number = 0) {
     await truncateFile(path, len);
 }

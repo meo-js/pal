@@ -1,3 +1,8 @@
+/**
+ * @public
+ *
+ * @module
+ */
 // TODO API 接口计划
 
 // 写入、修改操作默认会覆盖、不存在则创建、递归地执行。
@@ -84,3 +89,8 @@
 
 // 可以流的方式替换文件内容：https://github.com/signicode/rw-stream/
 // 主要配置类型的扩展接口（类似 https://github.com/unjs/confbox 的另一个包，包括 writeText）
+
+// #export * from "!sub-modules"
+// #region Generated exports
+export * from "./file.js";
+// #endregion

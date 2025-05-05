@@ -1,9 +1,9 @@
 import type { StringEncoding } from "@meojs/fs-constants";
-import { isString } from "@meojs/utils";
-import { dirname } from "@meojs/utils/path";
+import { dirname, type PathBuffer, type PathLike } from "@meojs/path";
+import { isString } from "@meojs/std/guard";
 import { mkdir, readdir } from "./impls/nodejs/fs.js";
 import { remove } from "./operate.js";
-import { Encoding, type Mode, type Uint8String } from "./shared.js";
+import { Encoding, type Mode } from "./shared.js";
 import { hasAccess, type Dirent } from "./stat.js";
 
 /**
@@ -25,8 +25,6 @@ export interface ReadDirOptions {
     /**
      * 指定返回文件路径的编码格式
      *
-     * 所有数据编码均为小端序。
-     *
      * @default Encoding.Utf8
      */
     encoding?: Encoding;
@@ -46,7 +44,7 @@ export interface ReadDirOptions {
  * @param opts {@link MakeDirOptions}
  */
 export async function makeDir(
-    path: string | Uint8String,
+    path: PathLike,
     opts?: MakeDirOptions | Mode,
 ): Promise<void> {
     await mkdir(path, opts);
@@ -59,7 +57,7 @@ export async function makeDir(
  * @param opts {@link MakeDirOptions}
  */
 export async function makeParentDir(
-    path: string | Uint8String,
+    path: PathLike,
     opts?: MakeDirOptions | Mode,
 ): Promise<void> {
     if (isString(path)) {
@@ -87,17 +85,17 @@ export async function makeParentDir(
  * @returns 默认返回文件名数组，如 `example.txt`，若{@link ReadDirOptions.encoding opts.encoding} 设置为 {@link Encoding.Binary} 则返回文件名二进制数据数组，若 {@link ReadDirOptions.withDirent withDirent} 为 `true`，则返回目录项对象 {@link Dirent} 数组。
  */
 export async function readDir(
-    path: string | Uint8String,
+    path: PathLike,
     opts: ReadDirOptions & { withDirent: true },
 ): Promise<Dirent[]>;
 export async function readDir(
-    path: string | Uint8String,
+    path: PathLike,
     opts:
         | (ReadDirOptions & { withDirent?: false; encoding: Encoding.Binary })
         | Encoding.Binary,
-): Promise<Uint8String[]>;
+): Promise<PathBuffer[]>;
 export async function readDir(
-    path: string | Uint8String,
+    path: PathLike,
     opts?:
         | (ReadDirOptions & {
               withDirent?: false;
@@ -106,15 +104,15 @@ export async function readDir(
         | StringEncoding,
 ): Promise<string[]>;
 export async function readDir(
-    path: string | Uint8String,
+    path: PathLike,
     opts?:
         | (ReadDirOptions & {
               withDirent?: false;
           })
         | Encoding,
-): Promise<string[] | Uint8String[]>;
+): Promise<string[] | PathBuffer[]>;
 export async function readDir(
-    path: string | Uint8String,
+    path: PathLike,
     opts:
         | (ReadDirOptions & {
               withDirent?: boolean;
@@ -123,21 +121,21 @@ export async function readDir(
         | StringEncoding,
 ): Promise<string[] | Dirent[]>;
 export async function readDir(
-    path: string | Uint8String,
+    path: PathLike,
     opts?:
         | (ReadDirOptions & {
               withDirent?: boolean;
               encoding: Encoding.Binary;
           })
         | Encoding.Binary,
-): Promise<Uint8String[] | Dirent[]>;
+): Promise<PathBuffer[] | Dirent[]>;
 export async function readDir(
-    path: string | Uint8String,
+    path: PathLike,
     opts?: ReadDirOptions | Encoding,
-): Promise<string[] | Uint8String[] | Dirent[]>;
+): Promise<string[] | PathBuffer[] | Dirent[]>;
 export async function readDir(
-    path: string | Uint8String,
+    path: PathLike,
     opts?: ReadDirOptions | Encoding,
-): Promise<string[] | Uint8String[] | Dirent[]> {
+): Promise<string[] | PathBuffer[] | Dirent[]> {
     return await readdir(path, opts);
 }
