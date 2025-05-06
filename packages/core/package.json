@@ -41,8 +41,8 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@meojs/types": "^1.0.1",
-    "@meojs/std": "^1.0.6"
+    "@meojs/std": "^1.0.8",
+    "@meojs/types": "^1.0.1"
   },
   "devDependencies": {
     "@types/node": "^20"

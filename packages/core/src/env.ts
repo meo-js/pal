@@ -1,3 +1,4 @@
+import { INF } from "@meojs/std/math";
 import { Platform, PlatformSpec, ScriptEngine, System } from "./enum.js";
 import {
     isAndroid,
@@ -70,7 +71,7 @@ export const platformSpecs = new Set<PlatformSpec>(
 /**
  * 最大可同时运行 {@link Worker} 数量
  */
-export const MAX_WORKER_COUNT = isWechat() ? 1 : Number.POSITIVE_INFINITY;
+export const MAX_WORKER_COUNT = isWechat() ? 1 : INF;
 
 /**
  * 最大调用栈大小

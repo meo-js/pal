@@ -47,6 +47,6 @@
   "dependencies": {
     "@meojs/fs-constants": "workspace:^",
     "@meojs/path": "workspace:^",
-    "@meojs/std": "^1.0.6"
+    "@meojs/std": "^1.0.8"
   }
 }

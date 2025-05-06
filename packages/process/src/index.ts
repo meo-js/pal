@@ -1,9 +1,9 @@
 import { Encoding, type StringEncoding } from "@meojs/fs-constants";
-import { createPalLogger, isNodeJSLike } from "@meojs/pal";
+import { createLogger, isNodeJSLike } from "@meojs/pal";
 import type { PathBuffer, PathLike } from "@meojs/path-constants";
-import { isUint8Array } from "@meojs/std/guard";
+import { isUint8Array } from "@meojs/std/predicate";
 
-const log = createPalLogger("process");
+const log = createLogger("process");
 
 let _currentDir: string = "/";
 

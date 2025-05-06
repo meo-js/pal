@@ -1,6 +1,6 @@
 import type { StringEncoding } from "@meojs/fs-constants";
 import { dirname, type PathBuffer, type PathLike } from "@meojs/path";
-import { isString } from "@meojs/std/guard";
+import { isString } from "@meojs/std/predicate";
 import { mkdir, readdir } from "./impls/nodejs/fs.js";
 import { remove } from "./operate.js";
 import { Encoding, type Mode } from "./shared.js";

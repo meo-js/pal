@@ -1,6 +1,6 @@
 import type { StringEncoding } from "@meojs/fs-constants";
 import type { PathLike } from "@meojs/path";
-import { isFunction, isObject } from "@meojs/std/guard";
+import { isFunction, isObject } from "@meojs/std/predicate";
 import type { PromisableLike } from "@meojs/std/promise";
 import type { uncertain } from "@meojs/std/ts";
 import { makeParentDir } from "./dir.js";

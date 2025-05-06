@@ -13,7 +13,7 @@ import {
     isObject,
     isString,
     isUint8Array,
-} from "@meojs/std/guard";
+} from "@meojs/std/predicate";
 import type { uncertain } from "@meojs/std/ts";
 import {
     constants,
@@ -312,14 +312,14 @@ export function impl2Return<
                 (<Dirent[]>(<unknown>v))[i] = new Dirent(dirent);
             }
         }
-        return v as unknown as R;
+        return v as R;
     } else {
         if (isString(v)) {
             // do nothing.
         } else {
-            return buffer2Uint8Array(v) as unknown as R;
+            return buffer2Uint8Array(v) as R;
         }
-        return v as unknown as R;
+        return v as R;
     }
 }
 

@@ -1,5 +1,5 @@
 import type { PathLike } from "@meojs/path";
-import { isBigInt } from "@meojs/std/guard";
+import { isBigInt } from "@meojs/std/predicate";
 import { readDir } from "./dir.js";
 import {
     access as access_impl,

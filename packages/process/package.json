@@ -45,6 +45,6 @@
     "@meojs/fs-constants": "workspace:^",
     "@meojs/pal": "workspace:^",
     "@meojs/path-constants": "workspace:^",
-    "@meojs/std": "^1.0.6"
+    "@meojs/std": "^1.0.8"
   }
 }

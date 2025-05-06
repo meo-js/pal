@@ -1,4 +1,5 @@
 import type { PathLike } from "@meojs/path";
+import { INF } from "@meojs/std/math";
 import { readDir } from "./dir.js";
 import { e, Encoding } from "./shared.js";
 import { getStats, type Dirent } from "./stat.js";
@@ -10,21 +11,21 @@ export interface WalkOptions {
     /**
      * 允许同时进行的操作数
      *
-     * @default Number.POSITIVE_INFINITY
+     * @default INF
      */
     concurrency?: number;
 
     /**
      * 控制内部缓冲区大小
      *
-     * @default Number.POSITIVE_INFINITY
+     * @default INF
      */
     highWaterMark?: number;
 
     /**
      * 递归深度
      *
-     * @default Number.POSITIVE_INFINITY
+     * @default INF
      */
     depth?: number;
 
@@ -101,9 +102,9 @@ export function walk(
     opts?: WalkOptions,
 ): ReadableStream<PathLike | Dirent> {
     const {
-        concurrency = Number.POSITIVE_INFINITY,
-        highWaterMark = Number.POSITIVE_INFINITY,
-        depth = Number.POSITIVE_INFINITY,
+        concurrency = INF,
+        highWaterMark = INF,
+        depth = INF,
         encoding = Encoding.Utf8,
         withDirent = false,
         filter,
