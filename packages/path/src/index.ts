@@ -1,3 +1,9 @@
+/**
+ * @public
+ *
+ * @module
+ */
+
 // TODO safePath/safeName utils
 // TODO 看下 https://doc.rust-lang.org/std/path/struct.Path.html 都有些啥工具函数
 

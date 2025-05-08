@@ -4,6 +4,7 @@
  * @internal
  */
 import { resolve } from "@meojs/path";
+import type { PickKey } from "@meojs/std/object";
 import {
     constants,
     Dirent as Dirent_Impl,
@@ -74,7 +75,7 @@ export class Dirent implements I_Dirent {
 }
 
 // Stat 和 BigIntStat 两种类型的共有属性
-type I_StatBase = Pick<
+type I_StatBase = PickKey<
     I_Stat,
     | "type"
     | "mode"

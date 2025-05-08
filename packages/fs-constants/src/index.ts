@@ -1,4 +1,10 @@
 /**
+ * @public
+ *
+ * @module
+ */
+
+/**
  * 数据编码枚举
  */
 export enum Encoding {

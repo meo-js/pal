@@ -39,8 +39,8 @@ importers:
   packages/core:
     dependencies:
       '@meojs/std':
-        specifier: ^1.0.8
-        version: 1.0.8
+        specifier: ^1.0.9
+        version: 1.0.9
       '@meojs/types':
         specifier: ^1.0.1
         version: 1.0.1
@@ -58,8 +58,8 @@ importers:
         specifier: workspace:^
         version: link:../path
       '@meojs/std':
-        specifier: ^1.0.8
-        version: 1.0.8
+        specifier: ^1.0.9
+        version: 1.0.9
     devDependencies:
       '@types/node':
         specifier: ^20
@@ -100,8 +100,8 @@ importers:
         specifier: workspace:^
         version: link:../path-constants
       '@meojs/std':
-        specifier: ^1.0.8
-        version: 1.0.8
+        specifier: ^1.0.9
+        version: 1.0.9
 
 packages:
 
@@ -283,8 +283,8 @@ packages:
       prettier: ^3.5.3
       typescript: 5.7.x
 
-  '@meojs/std@1.0.8':
-    resolution: {integrity: sha512-xPy9FYChEynTb1qEdzvSTLcjg4OSWMca/J+wBHTQZ1EOMM3EqBXw60xd/qecH5VztSMpc0CHatF6ik4+CCb7xw==}
+  '@meojs/std@1.0.9':
+    resolution: {integrity: sha512-JZvt3vJL0aRxbDGwQx9JrS//zcI9bGsGa26xfEwA68HU9q6WljnlaczdiXILokDmwT0LjF4iTiUY/yY3avf7hw==}
     engines: {node: '>=20'}
 
   '@meojs/types@1.0.1':
@@ -1552,7 +1552,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@meojs/std@1.0.8':
+  '@meojs/std@1.0.9':
     dependencies:
       chardet: 2.1.0
       core-js: 3.42.0

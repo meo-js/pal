@@ -1,3 +1,8 @@
+/**
+ * @public
+ *
+ * @module
+ */
 import { Encoding, type StringEncoding } from "@meojs/fs-constants";
 import { createLogger, isNodeJSLike } from "@meojs/pal";
 import type { PathBuffer, PathLike } from "@meojs/path-constants";

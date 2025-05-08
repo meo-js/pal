@@ -1,4 +1,5 @@
 import type { PathLike } from "@meojs/path";
+import type { OmitKey, PickKey } from "@meojs/std/object";
 import { isBigInt } from "@meojs/std/predicate";
 import { readDir } from "./dir.js";
 import {
@@ -69,7 +70,7 @@ export interface Dirent {
 /**
  * 文件信息
  */
-export interface Stat extends Omit<Dirent, "path"> {
+export interface Stat extends OmitKey<Dirent, "path"> {
     /**
      * 文件所属用户 ID
      */
@@ -124,7 +125,7 @@ export interface Stat extends Omit<Dirent, "path"> {
  *
  * 使用 {@link BigInt} 存储文件大小和时间戳。
  */
-export interface BigIntStat extends Omit<Dirent, "path"> {
+export interface BigIntStat extends OmitKey<Dirent, "path"> {
     /**
      * 所属用户 ID
      */
@@ -343,7 +344,7 @@ export async function exists(path: PathLike): Promise<boolean> {
  */
 export async function getMode(
     path: PathLike,
-    opts?: Pick<GetStatsOptions, "preserveSymlinks">,
+    opts?: PickKey<GetStatsOptions, "preserveSymlinks">,
 ): Promise<Mode> {
     const stats = await getStats(path, opts);
     return stats.mode;
@@ -355,7 +356,7 @@ export async function getMode(
 export async function setMode(
     path: PathLike,
     mode: Mode,
-    opts: Pick<SetStatsOptions, "preserveSymlinks"> & {
+    opts: PickKey<SetStatsOptions, "preserveSymlinks"> & {
         /**
          * 子目录权限
          *
@@ -422,7 +423,7 @@ export async function setOwner(
     path: PathLike,
     userId: number | bigint,
     groupId: number | bigint,
-    opts: Pick<SetStatsOptions, "preserveSymlinks"> & {
+    opts: PickKey<SetStatsOptions, "preserveSymlinks"> & {
         /**
          * 是否递归地设置权限
          *
@@ -474,7 +475,7 @@ export async function setTime(
     path: PathLike,
     accessTime: number | bigint,
     modifyTime: number | bigint,
-    opts: Pick<SetStatsOptions, "preserveSymlinks"> = {},
+    opts: PickKey<SetStatsOptions, "preserveSymlinks"> = {},
 ): Promise<void> {
     const { preserveSymlinks = false } = opts;
 
@@ -589,7 +590,7 @@ export async function getBirthTime(
  */
 export async function isFile(
     path: PathLike,
-    opts?: Pick<GetStatsOptions, "preserveSymlinks">,
+    opts?: PickKey<GetStatsOptions, "preserveSymlinks">,
 ): Promise<boolean> {
     try {
         const stats = await getStats(path, opts);
@@ -604,7 +605,7 @@ export async function isFile(
  */
 export async function isDir(
     path: PathLike,
-    opts?: Pick<GetStatsOptions, "preserveSymlinks">,
+    opts?: PickKey<GetStatsOptions, "preserveSymlinks">,
 ): Promise<boolean> {
     try {
         const stats = await getStats(path, opts);
