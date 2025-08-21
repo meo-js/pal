@@ -1,7 +1,7 @@
 {
   "name": "@meojs/fs",
   "version": "1.0.0",
-  "packageManager": "pnpm@10.8.0",
+  "packageManager": "pnpm@10.14.0",
   "engines": {
     "node": ">=20"
   },
@@ -47,6 +47,6 @@
   "dependencies": {
     "@meojs/fs-constants": "workspace:^",
     "@meojs/path": "workspace:^",
-    "@meojs/std": "^1.0.9"
+    "@meojs/std": "^1.0.11"
   }
 }

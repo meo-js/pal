@@ -8,11 +8,11 @@
     "types": [
       "node",
       "@meojs/types/cocos-creator/3.8.5/editor",
-      "@meojs/types/cocos-creator/3.8.5/engine",
-    ],
+      "@meojs/types/cocos-creator/3.8.5/engine"
+    ]
   },
   "include": [
     "src",
     "test"
-  ],
+  ]
 }

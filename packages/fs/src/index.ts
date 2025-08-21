@@ -1,6 +1,5 @@
 /**
  * @public
- *
  * @module
  */
 // TODO API 接口计划
@@ -92,5 +91,5 @@
 
 // #export * from "!sub-modules"
 // #region Generated exports
-export * from "./file.js";
+export * from './file.js';
 // #endregion

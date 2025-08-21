@@ -1,4 +1,4 @@
-import { BaseError, defineErrors } from "@meojs/std/error";
+import { BaseError, defineErrors } from '@meojs/std/error';
 
 /**
  * 文件权限掩码枚举
@@ -28,105 +28,105 @@ import { BaseError, defineErrors } from "@meojs/std/error";
  * ```
  */
 export enum Mode {
-    Owner_N = 0o000,
-    Owner_X = 0o100,
-    Owner_W = 0o200,
-    Owner_R = 0o400,
-    Owner_WX = 0o300,
-    Owner_RX = 0o500,
-    Owner_RW = 0o600,
-    Owner_RWX = 0o700,
+  Owner_N = 0o000,
+  Owner_X = 0o100,
+  Owner_W = 0o200,
+  Owner_R = 0o400,
+  Owner_WX = 0o300,
+  Owner_RX = 0o500,
+  Owner_RW = 0o600,
+  Owner_RWX = 0o700,
 
-    // eslint-disable-next-line @typescript-eslint/no-duplicate-enum-values -- checked.
-    Group_N = 0o000,
-    Group_X = 0o010,
-    Group_W = 0o020,
-    Group_R = 0o040,
-    Group_WX = 0o030,
-    Group_RX = 0o050,
-    Group_RW = 0o060,
-    Group_RWX = 0o070,
+  // eslint-disable-next-line @typescript-eslint/no-duplicate-enum-values -- checked.
+  Group_N = 0o000,
+  Group_X = 0o010,
+  Group_W = 0o020,
+  Group_R = 0o040,
+  Group_WX = 0o030,
+  Group_RX = 0o050,
+  Group_RW = 0o060,
+  Group_RWX = 0o070,
 
-    // eslint-disable-next-line @typescript-eslint/no-duplicate-enum-values -- checked.
-    Other_N = 0o000,
-    Other_X = 0o001,
-    Other_W = 0o002,
-    Other_R = 0o004,
-    Other_WX = 0o003,
-    Other_RX = 0o005,
-    Other_RW = 0o006,
-    Other_RWX = 0o007,
+  // eslint-disable-next-line @typescript-eslint/no-duplicate-enum-values -- checked.
+  Other_N = 0o000,
+  Other_X = 0o001,
+  Other_W = 0o002,
+  Other_R = 0o004,
+  Other_WX = 0o003,
+  Other_RX = 0o005,
+  Other_RW = 0o006,
+  Other_RWX = 0o007,
 }
 
 /**
  * 文件访问权限枚举
  */
 export enum Access {
-    /**
-     * 文件可见，这可以用于确认文件是否存在。
-     */
-    Visible = 1 << 0,
+  /**
+   * 文件可见，这可以用于确认文件是否存在。
+   */
+  Visible = 1 << 0,
 
-    /**
-     * 文件可读
-     */
-    Read = 1 << 1,
+  /**
+   * 文件可读
+   */
+  Read = 1 << 1,
 
-    /**
-     * 文件可写
-     */
-    Write = 1 << 2,
+  /**
+   * 文件可写
+   */
+  Write = 1 << 2,
 
-    /**
-     * 文件可执行
-     */
-    Execute = 1 << 3,
+  /**
+   * 文件可执行
+   */
+  Execute = 1 << 3,
 }
 
 /**
  * 文件类型枚举
  */
 export enum Type {
-    File,
-    Directory,
-    BlockDevice,
-    CharacterDevice,
-    FIFO,
-    Socket,
-    SymbolicLink,
-    Unknown,
+  File,
+  Directory,
+  BlockDevice,
+  CharacterDevice,
+  FIFO,
+  Socket,
+  SymbolicLink,
+  Unknown,
 }
 
 /**
  * 文件系统错误代码枚举
  */
 export enum ErrorCode {
-    /**
-     * 已达到系统允许的最大文件描述符数量，无法打开更多文件
-     */
-    TooManyOpen,
+  /**
+   * 已达到系统允许的最大文件描述符数量，无法打开更多文件
+   */
+  TooManyOpen,
 
-    /**
-     * 文件或目录不存在
-     */
-    NotExist,
+  /**
+   * 文件或目录不存在
+   */
+  NotExist,
 
-    /**
-     * 没有足够的权限进行操作
-     */
-    NoPermission,
+  /**
+   * 没有足够的权限进行操作
+   */
+  NoPermission,
 
-    /**
-     * 预料之外的文件类型
-     */
-    WrongType,
+  /**
+   * 预料之外的文件类型
+   */
+  WrongType,
 
-    /**
-     * 内部错误
-     *
-     * 可以访问 {@link Error.cause} 获取具体错误原因
-     */
-    InternalError,
+  /**
+   * 内部错误
+   *
+   * 可以访问 {@link Error.cause} 获取具体错误原因
+   */
+  InternalError,
 }
 
 /**
@@ -141,4 +141,4 @@ export class Error extends BaseError<ErrorCode> {}
  */
 export const e = defineErrors(Error, ErrorCode);
 
-export { Encoding } from "@meojs/fs-constants";
+export { Encoding } from '@meojs/fs-constants';

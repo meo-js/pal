@@ -1,51 +1,51 @@
 {
-    "folders": [
-        {
-            "path": ".."
-        },
-        {
-            "path": "../packages/core"
-        },
-        {
-            "path": "../packages/fs"
-        },
-        {
-            "path": "../packages/fs-constants"
-        },
-        {
-            "path": "../packages/path"
-        },
-        {
-            "path": "../packages/path-constants"
-        },
-        {
-            "path": "../packages/process"
-        },
-        {
-            "name": "old pal",
-            "path": "/Users/smallmain/Documents/Work/xenon-studio/xenon.js/src/pal"
-        }
+  "folders": [
+    {
+      "path": "..",
+    },
+    {
+      "path": "../packages/core",
+    },
+    {
+      "path": "../packages/fs",
+    },
+    {
+      "path": "../packages/fs-constants",
+    },
+    {
+      "path": "../packages/path",
+    },
+    {
+      "path": "../packages/path-constants",
+    },
+    {
+      "path": "../packages/process",
+    },
+    {
+      "name": "old pal",
+      "path": "/Users/smallmain/Documents/Work/xenon-studio/xenon.js/src/pal",
+    },
+  ],
+  "settings": {
+    "[javascript][typescript][javascriptreact][typescriptreact]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+    },
+    "[html][css][scss][less]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+    },
+    "[vue]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+    },
+    "[markdown][mdx]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+    },
+  },
+  "extensions": {
+    "recommendations": [
+      "editorconfig.editorconfig",
+      "dbaeumer.vscode-eslint",
+      "esbenp.prettier-vscode",
+      "vitest.explorer",
     ],
-    "settings": {
-        "[javascript][typescript][javascriptreact][typescriptreact]": {
-            "editor.defaultFormatter": "esbenp.prettier-vscode"
-        },
-        "[html][css][scss][less]": {
-            "editor.defaultFormatter": "esbenp.prettier-vscode"
-        },
-        "[vue]": {
-            "editor.defaultFormatter": "esbenp.prettier-vscode"
-        },
-        "[markdown][mdx]": {
-            "editor.defaultFormatter": "esbenp.prettier-vscode"
-        }
-    },
-    "extensions": {
-        "recommendations": [
-            "editorconfig.editorconfig",
-            "dbaeumer.vscode-eslint",
-            "esbenp.prettier-vscode",
-            "vitest.explorer"
-        ]
-    },
+  },
 }

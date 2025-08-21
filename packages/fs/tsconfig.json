@@ -6,11 +6,11 @@
       "DOM"
     ],
     "types": [
-      "node",
-    ],
+      "node"
+    ]
   },
   "include": [
     "src",
     "test"
-  ],
+  ]
 }

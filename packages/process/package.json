@@ -1,7 +1,7 @@
 {
   "name": "@meojs/process",
   "version": "1.0.0",
-  "packageManager": "pnpm@10.8.0",
+  "packageManager": "pnpm@10.14.0",
   "engines": {
     "node": ">=20"
   },
@@ -45,6 +45,6 @@
     "@meojs/fs-constants": "workspace:^",
     "@meojs/pal": "workspace:^",
     "@meojs/path-constants": "workspace:^",
-    "@meojs/std": "^1.0.9"
+    "@meojs/std": "^1.0.11"
   }
 }

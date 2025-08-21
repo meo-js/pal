@@ -9,13 +9,13 @@
     "prepare": "pnpm exec utc install-git-hook"
   },
   "devDependencies": {
-    "@meojs/cfgs": "^2.0.58",
-    "@meojs/utc": "^1.18.30",
+    "@meojs/cfgs": "^2.0.60",
+    "@meojs/utc": "^1.18.32",
+    "@vitest/coverage-v8": "^3.2.4",
     "eslint": "^9.33.0",
     "prettier": "^3.6.2",
-    "@vitest/coverage-v8": "^3.2.4",
-    "vitest": "4.0.0-beta.8",
     "prettier-plugin-organize-imports": "^4.2.0",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "vitest": "4.0.0-beta.8"
   }
 }
