@@ -1,4 +1,4 @@
-// 测试类型推断是否正确
+import { expect, test } from 'vitest';
 // const b = Math.random() > 0.5;
 // const c = Math.random() > 0.5 ? Encoding.Base64 : Encoding.Binary;
 // const a = readDir("path", { withDirent: true });
@@ -14,3 +14,7 @@
 // const a11 = readDir("path", { encoding: c });
 // const a12 = readDir("path", c);
 // const a13 = readDir("path", { withDirent: b, encoding: c });
+
+test.todo('测试类型推断是否正确.', () => {
+  expect(false).toBe(false);
+});

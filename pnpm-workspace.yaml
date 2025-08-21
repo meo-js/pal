@@ -1,5 +1,3 @@
 packages:
-  - packages/*
-onlyBuiltDependencies:
-  - simple-git-hooks
+    - packages/*
 linkWorkspacePackages: true

@@ -1,5 +1,3 @@
-import { eslint } from "@meojs/cfgs";
+import { config } from '@meojs/utc';
 
-export default eslint.config({
-    ctix: true,
-});
+export default config('eslint');

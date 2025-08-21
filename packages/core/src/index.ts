@@ -1,6 +1,5 @@
 /**
  * @public
- *
  * @module
  */
 // #export * from "!sub-modules"

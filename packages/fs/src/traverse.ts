@@ -119,7 +119,7 @@ export function walk(
             async start(controller) {
                 const stats = await getStats(path);
                 if (!stats.isDirectory()) {
-                    controller.error(e.WrongType("path is not a directory"));
+                    controller.error(e.WrongType("path is not a directory."));
                     return;
                 }
 
@@ -154,9 +154,7 @@ export function walk(
 
                 // 如果还有处理中的项目，则等待处理完毕才算完成取消操作
                 if (ctx.processing > 0) {
-                    if (!ctx.resolver) {
-                        ctx.resolver = Promise.withResolvers();
-                    }
+                    ctx.resolver ??= Promise.withResolvers();
                 }
 
                 return ctx.resolver?.promise;

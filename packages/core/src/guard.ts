@@ -1,7 +1,7 @@
 /** @ctix-exclude */
 
 import * as ccenv from "cc/env";
-import { COCOS, NODE } from "internal/constants";
+import { COCOS, NODE } from "compile-constant";
 import node_os from "os";
 import { Platform, PlatformSpec, System } from "./enum.js";
 

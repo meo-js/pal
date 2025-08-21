@@ -1,4 +1,5 @@
-// 测试类型推断是否正确
+import { expect, test } from 'vitest';
+
 // const a = Math.random() > 0.5;
 // const b = Math.random() > 0.5 ? Encoding.Base64 : Encoding.Binary;
 // write("path", data => {
@@ -46,3 +47,7 @@
 //     },
 //     b,
 // );
+
+test.todo('测试类型推断是否正确.', () => {
+  expect(false).toBe(false);
+});
