@@ -10,7 +10,7 @@
   },
   "devDependencies": {
     "@meojs/cfgs": "^2.0.60",
-    "@meojs/utc": "^1.18.35",
+    "@meojs/utc": "^1.18.36",
     "@vitest/coverage-v8": "^3.2.4",
     "eslint": "^9.33.0",
     "prettier": "^3.6.2",
