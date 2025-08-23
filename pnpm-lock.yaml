@@ -12,8 +12,8 @@ importers:
         specifier: ^2.0.60
         version: 2.0.60(jiti@2.5.1)(prettier-plugin-organize-imports@4.2.0(prettier@3.6.2)(typescript@5.9.2))(typescript@5.9.2)(vitest@4.0.0-beta.8(@types/node@22.13.13)(jiti@2.5.1)(yaml@2.7.0))
       '@meojs/utc':
-        specifier: ^1.18.38
-        version: 1.18.38(@types/node@22.13.13)(@vitest/coverage-v8@3.2.4(vitest@4.0.0-beta.8(@types/node@22.13.13)(jiti@2.5.1)(yaml@2.7.0)))(eslint@9.33.0(jiti@2.5.1))(jiti@2.5.1)(magicast@0.3.5)(prettier-plugin-organize-imports@4.2.0(prettier@3.6.2)(typescript@5.9.2))(prettier@3.6.2)(stylelint@16.23.1(typescript@5.9.2))(typescript@5.9.2)(vitest@4.0.0-beta.8(@types/node@22.13.13)(jiti@2.5.1)(yaml@2.7.0))
+        specifier: ^1.18.39
+        version: 1.18.39(@types/node@22.13.13)(@vitest/coverage-v8@3.2.4(vitest@4.0.0-beta.8(@types/node@22.13.13)(jiti@2.5.1)(yaml@2.7.0)))(eslint@9.33.0(jiti@2.5.1))(jiti@2.5.1)(magicast@0.3.5)(prettier-plugin-organize-imports@4.2.0(prettier@3.6.2)(typescript@5.9.2))(prettier@3.6.2)(stylelint@16.23.1(typescript@5.9.2))(typescript@5.9.2)(vitest@4.0.0-beta.8(@types/node@22.13.13)(jiti@2.5.1)(yaml@2.7.0))
       '@vitest/coverage-v8':
         specifier: ^3.2.4
         version: 3.2.4(vitest@4.0.0-beta.8(@types/node@22.13.13)(jiti@2.5.1)(yaml@2.7.0))
@@ -698,8 +698,8 @@ packages:
     resolution: {integrity: sha512-1Jf0uyyueIVGRL73p8Q9xQh1LzjNCfMWNK2//b+T/bWXrHydg4bzbtlXVSs3gj8yhu78u6XLGPn4Dgn5Mx08Ng==}
     engines: {node: '>=20'}
 
-  '@meojs/utc@1.18.38':
-    resolution: {integrity: sha512-xUevyiQGoHhCbRH1U27yNFKkPDwSnO3EVxM/jyRDjT6FpP49/zNolqlsLHAGc6qZ3WwpFKCf6D3BaAsYFn7Zmw==}
+  '@meojs/utc@1.18.39':
+    resolution: {integrity: sha512-KCtejbCGJlw+vaoh/s+8xNiS8G15JP4pQLl1nRFQbyg52tLZ5xZpaB8R1POr1e2hkcNWCYFs7/SXb4tF4LaNXg==}
     engines: {node: '>=20.19.0'}
     hasBin: true
     peerDependencies:
@@ -3088,7 +3088,7 @@ snapshots:
     dependencies:
       '@types/node': 20.17.24
 
-  '@meojs/utc@1.18.38(@types/node@22.13.13)(@vitest/coverage-v8@3.2.4(vitest@4.0.0-beta.8(@types/node@22.13.13)(jiti@2.5.1)(yaml@2.7.0)))(eslint@9.33.0(jiti@2.5.1))(jiti@2.5.1)(magicast@0.3.5)(prettier-plugin-organize-imports@4.2.0(prettier@3.6.2)(typescript@5.9.2))(prettier@3.6.2)(stylelint@16.23.1(typescript@5.9.2))(typescript@5.9.2)(vitest@4.0.0-beta.8(@types/node@22.13.13)(jiti@2.5.1)(yaml@2.7.0))':
+  '@meojs/utc@1.18.39(@types/node@22.13.13)(@vitest/coverage-v8@3.2.4(vitest@4.0.0-beta.8(@types/node@22.13.13)(jiti@2.5.1)(yaml@2.7.0)))(eslint@9.33.0(jiti@2.5.1))(jiti@2.5.1)(magicast@0.3.5)(prettier-plugin-organize-imports@4.2.0(prettier@3.6.2)(typescript@5.9.2))(prettier@3.6.2)(stylelint@16.23.1(typescript@5.9.2))(typescript@5.9.2)(vitest@4.0.0-beta.8(@types/node@22.13.13)(jiti@2.5.1)(yaml@2.7.0))':
     dependencies:
       '@arethetypeswrong/core': 0.18.2
       '@commitlint/config-conventional': 19.8.1
