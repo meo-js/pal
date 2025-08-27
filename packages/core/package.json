@@ -54,7 +54,7 @@
     "build": "pnpm exec utc build"
   },
   "dependencies": {
-    "@meojs/std": "^1.0.11",
+    "@meojs/std": "^1.0.16",
     "@meojs/types": "^1.0.1"
   },
   "devDependencies": {
